@@ -1,0 +1,1028 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller 
+{
+	 public function __construct()
+        {
+            parent::__construct();        
+            $this->load->helper(array('cargarConsultas_helper', 'url'));
+            $this->load->library('form_validation');
+            $this->load->model('tbl_usuarios');
+            $this->load->model('tbl_documentos');
+            $this->load->model('tbl_areas');
+            $this->load->model('tbl_palabras');
+            $this->load->model('tbl_autores');
+            $this->load->model('tbl_documentoArea');  
+            $this->load->model('tbl_documentoAutor');
+            $this->load->model('tbl_documentoPalabra');
+        }
+
+	 /* @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function index()
+	{
+		$data = array('result' => '', 'resultAvanzada' =>'', 'tabpane' =>'');
+		$this->load->view('headers/header');
+		$this->load->view('home', $data );
+		$this->load->view('footer/footer');		
+	}
+
+	/*
+	if (!$this->ion_auth->logged_in())
+		{
+			redirect('auth/login');
+		}
+	else{
+			"No tiene permisos"
+	}
+
+
+	public function viewRegistrar()
+	{
+		$data = array('result' => '', 'resultAvanzada' =>'');
+		$this->load->view('headers/header');
+		$this->load->view('registrar', $data);
+		$this->load->view('footer/footer');
+	}
+
+	public function registrar()
+	{
+		$data = array(
+			'login' => $this->input->post('login', TRUE),
+			'password' => $this->input->post('password', TRUE),
+			'veri_pass' => $this->input->post('veri_pass', TRUE),
+			'nombre' => $this->input->post('nombre', TRUE),
+			'apellidos' => $this->input->post('apellidos', TRUE),
+			'correo' => $this->input->post('correo', TRUE),
+			'vinculo' => $this->input->post('vinculo', TRUE),
+			'nivel_escolar' => $this->input->post('nivel_escolar', TRUE),
+			'pregunta' => $this->input->post('pregunta', TRUE),
+			'respuesta' => $this->input->post('respuesta', TRUE)
+		);
+		echo print_r($data);
+
+		if ($data) { 
+			$this->tbl_usuarios->insertarUsuarios($data);
+			}		
+		else{
+		 	$data = FALSE;
+		 }		
+
+		redirect('main/viewRegistrar');
+
+	}*/
+
+
+	//vistas 
+
+	public function inicio()
+	{
+		if ($this->ion_auth->logged_in())
+		{
+			//pendiente pasar nombre de usuario
+			$data = array('views' => ''); 
+			$this->load->view('template', $data);
+		}
+	else{
+			redirect('Ingresar');
+	}
+		
+		
+	}
+
+	public function registroCatalogacion()
+	{
+		$data = array('views' => 'registrarCatalogacion'); 
+
+		$this->load->view('template', $data);
+	}
+
+	public function registroArea()
+	{
+		$data = array('views' => 'registrarArea'); 
+		$this->load->view('template', $data);
+	}
+	public function registroAutor()
+	{
+		$data = array('views' => 'registrarAutor'); 
+		$this->load->view('template', $data);
+	}
+
+	public function registroPalabra()
+	{
+		$data = array('views' => 'registrarPalabra'); 
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEditarCatalogacion()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
+		$result = $this->tbl_documentos->findDocumentos($inicio, $limit);
+		$totalRows = $this->tbl_documentos->findDocumentos();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'PaginaEditarCatalogacion/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows);
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config);
+
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaCatalogacion',
+			'propiedad' => 'btn btn-info btn-lg',
+			'nombreboton' => 'Editar',
+			'funcion' => 'FormEditarCatalogacion'
+			);
+
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEliminarCatalogacion()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
+		$result = $this->tbl_documentos->findDocumentos($inicio, $limit);
+		$totalRows = $this->tbl_documentos->findDocumentos();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'PaginaEliminarCatalogacion/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows);
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config);
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaCatalogacion',
+			'propiedad' => 'btn btn-danger btn-lg',
+			'nombreboton' => 'Eliminar',
+			'funcion' => 'EliminarCatalogacion'
+			);
+
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEditarAreas()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
+		$result = $this->tbl_areas->findAreas($inicio, $limit);
+		$totalRows = $this->tbl_areas->findAreas();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'PaginaEditarArea/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows);
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config);
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaAreas',
+			'propiedad' => 'btn btn-info btn-lg',
+			'nombreboton' => 'Editar',
+			'funcion' => 'FormEditarArea'
+			);
+
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEliminarAreas()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
+		$result = $this->tbl_areas->findAreas($inicio, $limit);
+		$totalRows = $this->tbl_areas->findAreas();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'PaginaEliminarCatalogacion/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows);
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config);
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaAreas',
+			'propiedad' => 'btn btn-danger btn-lg',
+			'nombreboton' => 'Eliminar',
+			'funcion' => 'EliminarArea'
+			);
+
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEditarAutores()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
+		$result = $this->tbl_autores->findAutores($inicio, $limit);
+		$totalRows = $this->tbl_autores->findAutores();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'PaginaEditarAutores/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows);
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config);
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaAutores',			
+			'propiedad' => 'btn btn-info btn-lg',
+			'nombreboton' => 'Editar',
+			'funcion' => 'FormEditarAutor'
+			);
+
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEliminarAutores()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
+		$result = $this->tbl_autores->findAutores($inicio, $limit);
+		$totalRows = $this->tbl_autores->findAutores();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'PaginaEliminarAutores/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows);
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config);
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaAutores',
+			'propiedad' => 'btn btn-danger btn-lg',
+			'nombreboton' => 'Eliminar',
+			'funcion' => 'EliminarAutores'
+			);
+
+		$this->load->view('template', $data);
+	}
+
+	public function tablaEditarPalabras()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	//valido envio de parametros por url de lo contrario el valor por defecto del inicio es 0
+		$result = $this->tbl_palabras->findPalabras($inicio, $limit); //envio inicio y limit de registros
+		$totalRows = $this->tbl_palabras->findPalabras(); //traer todos los registros
+		$this->load->library('pagination');		//cargo libreria de paginación
+
+		//configuracion de paginación
+		$config['base_url'] = base_url().'PaginaEliminarAutores/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows); 
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config); //inicializar paginación
+		$data = array( 
+			'result' =>$result,   		          //registros del modelo de palabrasclave
+			'views' => 'tablaPalabras',	           //nombre de la vista 
+			'propiedad' => 'btn btn-info btn-lg', //atributos del boton
+			'nombreboton' => 'Editar',			  //nombre del boton
+			'funcion' => 'FormEditarPalabra'	  //funcion a enviar los datos
+			);
+
+		$this->load->view('template', $data);	//cargar vista
+	}
+
+	public function tablaEliminarPalabras()
+	{
+		$limit = 8;	
+		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	//valido envio de parametros por url de lo contrario el valor por defecto del inicio es 0
+		$result = $this->tbl_palabras->findPalabras($inicio, $limit); //envio inicio y limit de registros
+		$totalRows = $this->tbl_palabras->findPalabras(); //traer todos los registros
+		$this->load->library('pagination');		//cargo libreria de paginación
+
+		//configuracion de paginación
+		$config['base_url'] = base_url().'PaginaEliminarAutores/';
+		$config['uri_segment'] = 2;
+		$config['total_rows'] = count($totalRows); 
+		$config['per_page'] = $limit;
+		$config['num_links'] = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 5;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = 'Anterior';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Siguiente';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';		
+		$this->pagination->initialize($config); //inicializar paginación
+		$data = array( 
+			'result' =>$result,
+			'views' => 'tablaPalabras',
+			'propiedad' => 'btn btn-danger btn-lg',
+			'nombreboton' => 'Eliminar',
+			'funcion' => 'EliminarPalabra'
+			);
+		$this->load->view('template', $data);
+	}
+
+
+	public function cargarDatosCatalogacion()
+	{
+		$id = $this->uri->segment(2);
+		$result = $this->tbl_documentos->obtenerDocumentos($id);
+		$idArea = $this->tbl_documentoArea->findDocumentoArea($id);
+		$idArea = $idArea[0]->id_area;	 
+		$nameArea = $this->tbl_areas->findNombreAreas($idArea);
+		$idPalabra = $this->tbl_documentoPalabra->findDocumentoPalabra($id);
+		$idPalabra = $idPalabra[0]->id_palabra;	 
+		$namePalabra = $this->tbl_palabras->findNombrePalabra($idPalabra);
+		$idAutor = $this->tbl_documentoAutor->findDocumentoAutor($id);
+		$idAutor = $idAutor[0]->id_autor;	 
+		$apellidoAutor = $this->tbl_autores->findApellidoAutor($idAutor);
+
+		if ($result != FALSE) 
+		{		
+			foreach ($result as $row) {
+				$tipo_material = $row->tipo_material;
+				$titulo_principal = $row->titulo_principal;
+				$titulo_secundario = $row->titulo_secundario;
+				$fecha_creacion = $row->fecha_creacion;
+				$fecha_catalogacion = $row->fecha_catalogacion;
+				$editorial = $row->editorial;
+				$idioma = $row->idioma;
+				$formato = $row->formato;
+				$descripcion = $row->descripcion;
+			}
+
+			$data = array( 
+				'views' => 'editarCatalogacion',
+				'id' => $id,
+				'tipo_material' =>$tipo_material,
+				'titulo_principal' =>$titulo_principal,
+				'titulo_secundario' =>$titulo_secundario,
+				'fecha_creacion' =>$fecha_creacion,
+				'fecha_catalogacion' =>$fecha_catalogacion,
+				'editorial' =>$editorial,
+				'idioma' =>$idioma,
+				'formato' =>$formato,
+				'descripcion' =>$descripcion,
+				'nombre_area' => $nameArea[0]->nombre,
+				'nombre_palabra' => $namePalabra[0]->nombre,
+				'apellido_autor' => $apellidoAutor[0]->apellido
+				);
+		}
+		else
+		{
+			return FALSE;
+		}
+			$this->load->view('template', $data);
+	}
+
+	public function cargarDatosAreas()
+	{
+		$id = $this->uri->segment(2);
+		$result = $this->tbl_areas->findNombreAreas($id);
+		if ($result != FALSE) 
+		{
+			foreach ($result as $row) {
+				$nombreArea = $row->nombre;
+			}
+
+			$data = array( 
+				'views' => 'editarArea',
+				'id' => $id,
+				'nombre' =>$nombreArea
+				);
+		}
+		else
+		{
+			return FALSE;
+		}
+			$this->load->view('template', $data);
+	}
+
+	public function cargarDatosAutores()
+	{
+		$id = $this->uri->segment(2);
+		$result = $this->tbl_autores->findIdAutores($id);
+		if ($result != FALSE) 
+		{
+			foreach ($result as $row) {
+				$nombreAutor = $row->nombre;
+				$apellidoAutor = $row->apellido;
+				$acronimo = $row->acronimo;
+				$correo = $row->correo;
+
+			}
+
+			$data = array( 
+				'views' => 'editarAutor',
+				'id' => $id,
+				'nombre' => $nombreAutor,
+				'apellido' => $apellidoAutor,
+				'acronimo' => $acronimo,
+				'correo' => $correo
+				);
+		}
+		else
+		{
+			return FALSE;
+		}
+			$this->load->view('template', $data);
+	}
+
+	public function cargarDatosPalabras()
+	{
+		$id = $this->uri->segment(2);
+		$result = $this->tbl_palabras->findNombrePalabra($id);
+		if ($result != FALSE) 
+		{
+			foreach ($result as $row) {
+				$nombrePalabra = $row->nombre;
+			}
+
+			$data = array( 
+				'views' => 'editarPalabra',
+				'id' => $id,
+				'nombre' =>$nombrePalabra
+				);
+		}
+		else
+		{
+			return FALSE;
+		}
+			$this->load->view('template', $data);
+	}
+
+
+	//búsquedas
+
+	public function busquedaG()
+	{
+		$data = array();
+		$query = $this->input->post('palabra', TRUE);
+
+		 if ($query) {     //valido que si enviaron palabra
+		 	$result = $this->tbl_documentos->busquedaGeneral($query);  //ejecuto el query con la palabra
+		 	if($result != FALSE)
+		 	{
+				$data = array('result' =>$result, 'resultAvanzada' =>'');
+		 	}
+		 	else
+		 	{
+		 		$data = array('result' => '', 'resultAvanzada' =>'');
+		 	}
+		 }
+		 else{
+		 	$data = array('result' => '', 'resultAvanzada' =>'');
+		 }
+
+
+		$this->load->view('headers/header');
+		$this->load->view('home', $data );		
+		$this->load->view('footer/footer');	
+	}
+
+	public function busquedaA()
+	{
+
+		$titulo = $this->input->post('titulo', TRUE);
+		$autor = $this->input->post('autor', TRUE);
+		$palabraClav = $this->input->post('palabraClav', TRUE);
+		$area = $this->input->post('area', TRUE);
+		$fechaPublicacion = $this->input->post('fechaPublicacion', TRUE);
+		$idioma = $this->input->post('idioma', TRUE);
+		$formato = $this->input->post('formato', TRUE);
+		$busqTitulo = $this->input->post('configuracion', TRUE);
+
+		if(!empty($titulo))
+		{
+			$titulo = strtolower($titulo); // Primero Convertimos la cadena a miniscula metodo srtolower 
+			$titulo = str_replace(","," ",$titulo);  // reemplazo las comas por espacios
+			$titulo= str_replace("."," ",$titulo);  // reemplazo los puntos por espacios
+		}
+		if(!empty($busqTitulo))
+		{
+			$busqTitulo = strtolower($busqTitulo); // Primero Convertimos la cadena a miniscula metodo srtolower 
+			$busqTitulo = str_replace(","," ",$busqTitulo);  // reemplazo las comas por espacios
+			$busqTitulo= str_replace("."," ",$busqTitulo);  // reemplazo los puntos por espacios
+		}
+		if(!empty($autor))
+		{
+			$autor = strtolower($autor); // Primero Convertimos la cadena a miniscula metodo srtolower 
+			$autor= str_replace(","," ",$autor);  // reemplazo los puntos por espacios
+			$autor= str_replace("."," ",$autor);  // reemplazo los puntos por espacios
+		}
+		if(!empty($area))
+		{
+			$area = strtolower($area); // Primero Convertimos la cadena a miniscula metodo srtolower
+			$area= str_replace(","," ",$area);  // reemplazo los puntos por espacios
+			$area= str_replace("."," ",$area);  // reemplazo los puntos por espacios
+		}
+		if(!empty($palabraClav))
+		{
+			$palabraClav = strtolower($palabraClav); // Primero Convertimos la cadena a miniscula metodo srtolower 
+			$palabraClav= str_replace(","," ",$palabraClav);  // reemplazo los puntos por espacios
+			$palabraClav= str_replace("."," ",$palabraClav);  // reemplazo los puntos por espacios
+		}
+		if(!empty($idioma))
+		{
+			$idioma = strtolower($idioma); // Primero Convertimos la cadena a miniscula metodo srtolower
+			$idioma= str_replace(","," ",$idioma);  // reemplazo los puntos por espacios
+			$idioma= str_replace("."," ",$idioma);  // reemplazo los puntos por espacios
+		}
+		if(!empty($formato))
+		{
+			$formato = strtolower($formato); // Primero Convertimos la cadena a miniscula metodo srtolower 
+			$formato= str_replace(","," ",$formato);  // reemplazo los puntos por espacios
+			$formato= str_replace("."," ",$formato);  // reemplazo los puntos por espacios
+		}
+
+		if(!empty($fechaPublicacion))
+		{
+			$fechaPublicacion= str_replace(","," ",$fechaPublicacion);  // reemplazo los puntos por espacios
+			$fechaPublicacion= str_replace("."," ",$fechaPublicacion);  // reemplazo los puntos por espacios
+		}
+
+		$resultAvanzada = $this->tbl_documentos->busquedaAvanzada($titulo, $autor, $palabraClav, $area, $fechaPublicacion, $idioma, $formato, $busqTitulo); 
+		
+		if($resultAvanzada != FALSE)
+		 	{
+				$data = array('result' =>'', 'resultAvanzada' =>$resultAvanzada);
+		 	}
+		 	else
+		 	{
+		 		$data = array('result' =>'', 'resultAvanzada' => '', 'tabpane' =>'');
+		 	}
+		$this->load->view('headers/header');
+		$this->load->view('home', $data);
+		$this->load->view('footer/footer');
+	}
+
+	public function findAreas()
+	{
+		$query = $this->tbl_areas->findAreas();
+		$data = array(
+			'areas' => $query); 
+
+		//$this->load->view('headers/header');
+		//$this->load->view('home', $data);
+		//$this->load->view('footer/footer');	
+	}
+
+	public function findPalabrasClave()
+	{
+		$palabrasClave = $this->tbl_palabras->palabrasClave();
+
+		$data = array(
+			'palabras' => $palabrasClave); 
+		//$this->load->view('template', $data);
+	}
+
+	public function guardarCatalogacion()
+	{
+			$dataDocumento = array(
+			'tipo_material' => $this->input->post('tipoMaterial', TRUE),
+			'v' => $this->input->post('tituloPrincipal', TRUE),
+			'titulo_secundario' => $this->input->post('tituloSecundario', TRUE),
+			'editorial' => $this->input->post('editorial', TRUE),
+			'fecha_catalogacion' => $this->input->post('fechaCatalogacion', TRUE),
+			'fecha_creacion' => $this->input->post('fechaCreacion', TRUE),
+			'idioma' => $this->input->post('idioma', TRUE),						
+			'derechos_autor' => $this->input->post('autores', TRUE),			
+			'formato' => $this->input->post('formato', TRUE),
+			'descripcion' => $this->input->post('descripcion', TRUE)
+		);
+
+			$area = $this->input->post('area', TRUE);
+			$palabraClav = $this->input->post('palabras', TRUE);
+		
+    	// reglas de validacion
+	    $this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|maxlength[30]');
+	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|maxlength[200]');
+	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|maxlength[100]');
+	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|maxlength[50]');
+	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|maxlength[200]');
+	    $this->form_validation->set_message('required','El campo es obligatorio'); 
+        $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+        $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
+             
+	    
+	    if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion
+	        
+	    }
+	    else {
+	        // validacion exitosa
+	       $this->tbl_documentos->guardarDocumento($dataDocumento);	//inserto documento
+		   $idDocumento = $this->tbl_documentos->UltimoidDocumento();  // ultimo id de documento
+		   $this->tbl_areas->guardarArea($area);					//inserto area
+		   $idArea = $this->tbl_areas->UltimoidArea();		// ultimo id de area			
+		   $this->tbl_documentoArea->guardarDocumentoArea($idDocumento, $idArea);//guardo id documento y area $personas[$dni];
+			$idAutor = $this->tbl_autores->findIdAutor($dataDocumento['derechos_autor']); //obtengo id de autor
+			//sacar datos de funcion result()
+			foreach ($idAutor as $row) {
+			$idautor = $row->id_autor;
+			}				
+			
+		  $this->tbl_documentoAutor->guardarDocumentoAutor($idDocumento, $idautor);//guardo id documento, aut
+		  $idpalabra = $this->tbl_palabras->findIdPalabra($palabraClav);
+
+		  //sacar datos de funcion result()
+		  foreach ($idpalabra as $row) {
+    		$idpalabra = $row->id_palabra;
+			}
+		 // echo $idDocumento;
+		  $this->tbl_documentoPalabra->guardarDocumentoPalabra($idDocumento, $idpalabra);
+
+	    }
+		 
+		redirect('RegistrarCatalogacion');
+	}
+
+	public function saveArea()
+	{
+		$area = $this->input->post('nombreArea', TRUE);
+		    	// reglas de validacion
+	    $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|alpha|min_length[2]|maxlength[50]');
+	    $this->form_validation->set_message('required', 'Debe completar este campo');
+	    $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
+	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	  
+	     if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion	
+	    }
+	    else {
+		
+		$this->tbl_areas->guardarArea($area);
+		}
+		redirect('RegistrarArea');
+	}
+	public function saveAutor()
+	{
+
+		$nombre = $this->input->post('nombre', TRUE);
+		$apellido = $this->input->post('apellido', TRUE);
+		$correo = $this->input->post('correo', TRUE);
+		$acronimo = $this->input->post('acronimo', TRUE);
+		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
+		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|maxlength[30]');
+
+		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
+		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+		 $this->form_validation->set_message('required', 'Debe completar este campo');
+
+		 if ($this->form_validation->run() == FALSE) {
+		 	
+		 }
+		 else 
+		 {		
+			$this->tbl_autores->guardarAutor($nombre, $apellido, $correo, $acronimo);
+		}
+
+		redirect('RegistrarAutor');
+	}
+
+	public function savePalabra()
+	{
+
+		$palabra = $this->input->post('palabraClave', TRUE);
+
+		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		$this->form_validation->set_message('required', 'Debe completar este campo');
+		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
+	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	  
+	     if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion
+	    
+	    }
+	    else {
+		
+		$this->tbl_palabras->guardarPalabra($palabra);
+		}
+		
+		redirect('RegistrarPalabra');
+	}
+
+	public function updateCatalogacion()
+	{
+		$dataDocumento = array(
+			
+			'tipo_material' => $this->input->post('tipoMaterial', TRUE),
+			'titulo_principal' => $this->input->post('tituloPrincipal', TRUE),
+			'titulo_secundario' => $this->input->post('tituloSecundario', TRUE),
+			'editorial' => $this->input->post('editorial', TRUE),
+			'fecha_catalogacion' => $this->input->post('fechaCatalogacion', TRUE),
+			'fecha_creacion' => $this->input->post('fechaCreacion', TRUE),
+			'idioma' => $this->input->post('idioma', TRUE),						
+			'derechos_autor' => $this->input->post('autores', TRUE),			
+			'formato' => $this->input->post('formato', TRUE),
+			'descripcion' => $this->input->post('descripcion', TRUE)
+		);
+
+			$idDocumento = $this->input->post('id', TRUE);
+			$area = $this->input->post('area', TRUE);
+			$palabraClav = $this->input->post('palabras', TRUE);
+
+			$this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|maxlength[30]');
+	    	$this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|maxlength[200]');
+	     	$this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|maxlength[100]');
+	    	$this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|maxlength[50]');
+	    	$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|maxlength[200]');
+	    	$this->form_validation->set_message('required','El campo es obligatorio'); 
+        	$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+        	$this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
+             
+	
+		 if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion
+	        
+	    }
+	    else {
+		    $this->tbl_documentos->udpdateDocumento($dataDocumento, $idDocumento);	//inserto documento
+		    $idArea = $this->tbl_areas->findIdAreas($area);	 //busco id por nombre
+		    $idArea= $idArea[0]->id_area;		
+	  		$this->tbl_documentoArea->updateDocumenArea($idDocumento, $idArea); 
+			$idAutor = $this->tbl_autores->findIdAutor($dataDocumento['derechos_autor']); //obtengo array de id de autor
+    		$idautor = $idAutor[0]->id_autor;	//obtengo id de autor		
+		    $this->tbl_documentoAutor->updateDocumenAutor($idDocumento, $idautor);//actualizo id documento, autor
+		    $idpalabra = $this->tbl_palabras->findIdPalabra($palabraClav); //obtengo array de id de palabra
+    	    $idpalabra = $idpalabra[0]->id_palabra; //obtengo id de palabra	
+		    $this->tbl_documentoPalabra->updateDocumenPalabra($idDocumento, $idpalabra);
+		}				 
+		redirect('VerEditarCatalogacion');		
+	}
+
+	public function updateArea()
+	{
+		$dataArea = array(
+			'nombre' => $this->input->post('nombreArea', TRUE)
+			);
+		$idArea = $this->input->post('id', TRUE);
+
+		 $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|alpha|min_length[2]|maxlength[50]');
+	     $this->form_validation->set_message('required', 'Debe completar este campo');
+	     $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+	     $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
+	      $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	  
+	    if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion	
+	    }
+	    else {
+		
+			$this->tbl_areas->udpdateArea($dataArea, $idArea);	//actualizo datos
+		}
+				 
+		redirect('VerEditarArea');	
+	}
+
+	public function updateAutor()
+	{
+		$dataAutor = array(
+			'nombre' => $this->input->post('nombre', TRUE),
+			'apellido' => $this->input->post('apellido', TRUE),
+			'correo' => $this->input->post('correo', TRUE),
+			'acronimo' => $this->input->post('acronimo', TRUE)
+			);
+		$idAutor = $this->input->post('id', TRUE);
+
+		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
+		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|maxlength[30]');
+		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
+		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+		 $this->form_validation->set_message('required', 'Debe completar este campo');
+
+		 if ($this->form_validation->run() == FALSE) {
+		 	
+		 }
+		 else 
+		 {	
+			$this->tbl_autores->udpdateAutor($dataAutor, $idAutor);	//actualizo datos
+		}
+				 
+		redirect('VerEditarAutores');	
+	}
+
+	public function updatePalabra()
+	{
+		$dataPalabra = array(
+			'nombre' => $this->input->post('palabraClave', TRUE)
+			);
+		$idPalabra = $this->input->post('id', TRUE);
+
+		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		$this->form_validation->set_message('required', 'Debe completar este campo');
+		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
+	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	  
+	     if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion
+	    
+	    }
+	    else {
+
+			$this->tbl_palabras->udpdatePalabra($dataPalabra, $idPalabra);	//actualizo datos
+		 }				 
+		redirect('VerEditarPalabra');	
+	}
+
+
+	public function deleteCatalogacion()
+	{
+		$id = $this->uri->segment(2);
+
+		if ($id) 
+		{ 
+			$this->tbl_documentos->deleteDocumento($id);	//actualizo datos
+		}
+		else
+		{
+		 	$data = FALSE;
+		 }				 
+		redirect('VerEliminarCatalogacion');		
+	}
+	public function deleteAreas()
+	{
+		$id = $this->uri->segment(2);
+
+		if ($id) 
+		{ 
+			$this->tbl_areas->deleteArea($id);	//actualizo datos
+		}
+		else
+		{
+		 	$data = FALSE;
+		 }				 
+		redirect('VerEliminarArea');		
+	}
+
+	public function deleteAutores()
+	{
+		$id = $this->uri->segment(2);
+
+		if ($id) 
+		{ 
+			$this->tbl_autores->deleteAutor($id);	//actualizo datos
+		}
+		else
+		{
+		 	$data = FALSE;
+		 }				 
+		redirect('VerEliminarAutores');		
+	}
+
+	public function deletePalabra()
+	{
+		$id = $this->uri->segment(2);
+
+		if ($id) 
+		{ 
+			$this->tbl_palabras->deletePalabra($id);	//actualizo datos
+		}
+		else
+		{
+		 	$data = FALSE;
+		 }				 
+		redirect('VerEliminarPalabra');		
+	}
+	
+}
