@@ -28,52 +28,6 @@ class Main extends CI_Controller
 		$this->load->view('footer/footer');		
 	}
 
-	/*
-	if (!$this->ion_auth->logged_in())
-		{
-			redirect('auth/login');
-		}
-	else{
-			"No tiene permisos"
-	}
-
-
-	public function viewRegistrar()
-	{
-		$data = array('result' => '', 'resultAvanzada' =>'');
-		$this->load->view('headers/header');
-		$this->load->view('registrar', $data);
-		$this->load->view('footer/footer');
-	}
-
-	public function registrar()
-	{
-		$data = array(
-			'login' => $this->input->post('login', TRUE),
-			'password' => $this->input->post('password', TRUE),
-			'veri_pass' => $this->input->post('veri_pass', TRUE),
-			'nombre' => $this->input->post('nombre', TRUE),
-			'apellidos' => $this->input->post('apellidos', TRUE),
-			'correo' => $this->input->post('correo', TRUE),
-			'vinculo' => $this->input->post('vinculo', TRUE),
-			'nivel_escolar' => $this->input->post('nivel_escolar', TRUE),
-			'pregunta' => $this->input->post('pregunta', TRUE),
-			'respuesta' => $this->input->post('respuesta', TRUE)
-		);
-		echo print_r($data);
-
-		if ($data) { 
-			$this->tbl_usuarios->insertarUsuarios($data);
-			}		
-		else{
-		 	$data = FALSE;
-		 }		
-
-		redirect('main/viewRegistrar');
-
-	}*/
-
-
 	//vistas 
 
 	public function inicio()
