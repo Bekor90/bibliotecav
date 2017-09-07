@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '184.72.243.166',
-	'username' => 'frnqpivdtlekpt',
-	'password' => '8db5012823b242736c7b68f0fea320c8eaf1cf3e41df6f29e97ce093cfa82f0a',
-	'database' => 'd5p9ac8ur1643f',
+	'hostname' => '204.236.239.225',
+	'username' => 'nlubhciswdpyfr',
+	'password' => '55bfb270908605d2573fd9cc17f806dcd818ba04928a9d4efee14e9011dc6d2c',
+	'database' => 'db0020eoj0qjpk',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
