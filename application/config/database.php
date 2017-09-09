@@ -75,13 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'herokubd',
+	'hostname' => 'ec2-204-236-239-225.compute-1.amazonaws.com',
 	'username' => 'nlubhciswdpyfr',
 	'password' => '55bfb270908605d2573fd9cc17f806dcd818ba04928a9d4efee14e9011dc6d2c',
 	'database' => 'db0020eoj0qjpk',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
-	'pconnect' => FALSE,
+	'pconnect' => '5432',
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
