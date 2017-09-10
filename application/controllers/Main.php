@@ -23,8 +23,8 @@ class Main extends CI_Controller
 	{
 		$data = array('result' => '', 'resultAvanzada' =>'', 'tabpane' =>'');
 		$this->load->view('headers/header');
-		$this->load->view('home', $data );
-		$this->load->view('footer/footer');		
+		//$this->load->view('home', $data );
+		//$this->load->view('footer/footer');		
 	}
 
 	//vistas 
