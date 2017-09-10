@@ -734,10 +734,12 @@ class Main extends CI_Controller
 	        // no pasa validacion	
 	    }
 	    else {
+
+	    	echo $area;
 		
 		$this->Tbl_areas->guardarArea($area);
 		}
-		redirect('RegistrarArea');
+		//redirect('RegistrarArea');
 	}
 	public function saveAutor()
 	{
