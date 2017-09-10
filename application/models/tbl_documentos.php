@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class tbl_documentos extends CI_model {
+class Tbl_documentos extends CI_model {
 
 	 /* @see https://codeigniter.com/user_guide/general/urls.html
 	 */

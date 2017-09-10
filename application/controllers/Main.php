@@ -8,7 +8,7 @@ class Main extends CI_Controller
             parent::__construct();        
             $this->load->helper(array('url'));
             $this->load->library('form_validation');
-            $this->load->model('tbl_documentos');
+            $this->load->model('Tbl_documentos');
             $this->load->model('tbl_areas');
             $this->load->model('tbl_palabras');
             $this->load->model('tbl_autores');
