@@ -7,7 +7,6 @@ class Main extends CI_Controller
         {
             parent::__construct();        
             $this->load->helper(array('url'));
-            $this->load->library('form_validation');
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
             $this->load->model('Tbl_palabras');
@@ -664,7 +663,7 @@ class Main extends CI_Controller
 	{
 			$dataDocumento = array(
 			'tipo_material' => $this->input->post('tipoMaterial', TRUE),
-			'v' => $this->input->post('tituloPrincipal', TRUE),
+			'titulo_principal' => $this->input->post('tituloPrincipal', TRUE),
 			'titulo_secundario' => $this->input->post('tituloSecundario', TRUE),
 			'editorial' => $this->input->post('editorial', TRUE),
 			'fecha_catalogacion' => $this->input->post('fechaCatalogacion', TRUE),
