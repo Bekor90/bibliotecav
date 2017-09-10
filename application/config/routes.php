@@ -51,8 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'Main';
-$route['BuscarG'] = 'Main/busquedaG';
-$route['BuscarA'] = 'Main/busquedaA';
+$route['BuscarG'] = 'main/busquedaG';
+$route['BuscarA'] = 'main/busquedaA';
 $route['Ingresar'] = 'Auth/login';
 $route['OlvidePassword'] = 'Auth/forgot_password';
 $route['Salir'] = 'Auth/logout';
