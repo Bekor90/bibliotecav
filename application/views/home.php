@@ -7,9 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <h1>Bienvenido</h1>
        </br></br>    
         <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
-	        <li class="active"><a href="#consultaGeneral" id="consultaGeneral-tab"  role="tab" data-toggle="tab" aria-controls="consultaGeneral">Consulta general</a>
+	        <li class="active"><a href="consultaGeneral" id="consultaGeneral-tab"  role="tab" data-toggle="tab" aria-controls="consultaGeneral">Consulta general</a>
 			</li> 
-			<li><a href="#consultaAvanzada" role="tab" id="consultaAvanzada-tab" data-toggle="tab" aria-controls="consultaAvanzada">Consulta Avanzada</a>
+			<li><a href="consultaAvanzada" role="tab" id="consultaAvanzada-tab" data-toggle="tab" aria-controls="consultaAvanzada">Consulta Avanzada</a>
 			</li>  
         </ul> 
 	  <div class="tab-content" id="myTabContent">
