@@ -10,11 +10,11 @@ class Main extends CI_Controller
             $this->load->library('form_validation');
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
-            $this->load->model('tbl_palabras');
-            $this->load->model('tbl_autores');
-            $this->load->model('tbl_documentoArea');  
-            $this->load->model('tbl_documentoAutor');
-            $this->load->model('tbl_documentoPalabra');
+            $this->load->model('Tbl_palabras');
+            $this->load->model('Tbl_autores');
+            $this->load->model('Tbl_documentoArea');  
+            $this->load->model('Tbl_documentoAutor');
+            $this->load->model('Tbl_documentoPalabra');
         }
 
 	 /* @see https://codeigniter.com/user_guide/general/urls.html
@@ -72,8 +72,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
-		$result = $this->tbl_documentos->findDocumentos($inicio, $limit);
-		$totalRows = $this->tbl_documentos->findDocumentos();
+		$result = $this->Tbl_documentos->findDocumentos($inicio, $limit);
+		$totalRows = $this->Tbl_documentos->findDocumentos();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'PaginaEditarCatalogacion/';
 		$config['uri_segment'] = 2;
@@ -115,8 +115,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
-		$result = $this->tbl_documentos->findDocumentos($inicio, $limit);
-		$totalRows = $this->tbl_documentos->findDocumentos();
+		$result = $this->Tbl_documentos->findDocumentos($inicio, $limit);
+		$totalRows = $this->Tbl_documentos->findDocumentos();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'PaginaEliminarCatalogacion/';
 		$config['uri_segment'] = 2;
@@ -157,8 +157,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
-		$result = $this->tbl_areas->findAreas($inicio, $limit);
-		$totalRows = $this->tbl_areas->findAreas();
+		$result = $this->Tbl_areas->findAreas($inicio, $limit);
+		$totalRows = $this->Tbl_areas->findAreas();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'PaginaEditarArea/';
 		$config['uri_segment'] = 2;
@@ -199,8 +199,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
-		$result = $this->tbl_areas->findAreas($inicio, $limit);
-		$totalRows = $this->tbl_areas->findAreas();
+		$result = $this->Tbl_areas->findAreas($inicio, $limit);
+		$totalRows = $this->Tbl_areas->findAreas();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'PaginaEliminarCatalogacion/';
 		$config['uri_segment'] = 2;
@@ -241,8 +241,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
-		$result = $this->tbl_autores->findAutores($inicio, $limit);
-		$totalRows = $this->tbl_autores->findAutores();
+		$result = $this->Tbl_autores->findAutores($inicio, $limit);
+		$totalRows = $this->Tbl_autores->findAutores();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'PaginaEditarAutores/';
 		$config['uri_segment'] = 2;
@@ -283,8 +283,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	
-		$result = $this->tbl_autores->findAutores($inicio, $limit);
-		$totalRows = $this->tbl_autores->findAutores();
+		$result = $this->Tbl_autores->findAutores($inicio, $limit);
+		$totalRows = $this->Tbl_autores->findAutores();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'PaginaEliminarAutores/';
 		$config['uri_segment'] = 2;
@@ -325,8 +325,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	//valido envio de parametros por url de lo contrario el valor por defecto del inicio es 0
-		$result = $this->tbl_palabras->findPalabras($inicio, $limit); //envio inicio y limit de registros
-		$totalRows = $this->tbl_palabras->findPalabras(); //traer todos los registros
+		$result = $this->Tbl_palabras->findPalabras($inicio, $limit); //envio inicio y limit de registros
+		$totalRows = $this->Tbl_palabras->findPalabras(); //traer todos los registros
 		$this->load->library('pagination');		//cargo libreria de paginación
 
 		//configuracion de paginación
@@ -369,8 +369,8 @@ class Main extends CI_Controller
 	{
 		$limit = 8;	
 		$inicio  = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;	//valido envio de parametros por url de lo contrario el valor por defecto del inicio es 0
-		$result = $this->tbl_palabras->findPalabras($inicio, $limit); //envio inicio y limit de registros
-		$totalRows = $this->tbl_palabras->findPalabras(); //traer todos los registros
+		$result = $this->Tbl_palabras->findPalabras($inicio, $limit); //envio inicio y limit de registros
+		$totalRows = $this->Tbl_palabras->findPalabras(); //traer todos los registros
 		$this->load->library('pagination');		//cargo libreria de paginación
 
 		//configuracion de paginación
@@ -412,16 +412,16 @@ class Main extends CI_Controller
 	public function cargarDatosCatalogacion()
 	{
 		$id = $this->uri->segment(2);
-		$result = $this->tbl_documentos->obtenerDocumentos($id);
-		$idArea = $this->tbl_documentoArea->findDocumentoArea($id);
+		$result = $this->Tbl_documentos->obtenerDocumentos($id);
+		$idArea = $this->Tbl_documentoArea->findDocumentoArea($id);
 		$idArea = $idArea[0]->id_area;	 
-		$nameArea = $this->tbl_areas->findNombreAreas($idArea);
-		$idPalabra = $this->tbl_documentoPalabra->findDocumentoPalabra($id);
+		$nameArea = $this->Tbl_areas->findNombreAreas($idArea);
+		$idPalabra = $this->Tbl_documentoPalabra->findDocumentoPalabra($id);
 		$idPalabra = $idPalabra[0]->id_palabra;	 
-		$namePalabra = $this->tbl_palabras->findNombrePalabra($idPalabra);
-		$idAutor = $this->tbl_documentoAutor->findDocumentoAutor($id);
+		$namePalabra = $this->Tbl_palabras->findNombrePalabra($idPalabra);
+		$idAutor = $this->Tbl_documentoAutor->findDocumentoAutor($id);
 		$idAutor = $idAutor[0]->id_autor;	 
-		$apellidoAutor = $this->tbl_autores->findApellidoAutor($idAutor);
+		$apellidoAutor = $this->Tbl_autores->findApellidoAutor($idAutor);
 
 		if ($result != FALSE) 
 		{		
@@ -464,7 +464,7 @@ class Main extends CI_Controller
 	public function cargarDatosAreas()
 	{
 		$id = $this->uri->segment(2);
-		$result = $this->tbl_areas->findNombreAreas($id);
+		$result = $this->Tbl_areas->findNombreAreas($id);
 		if ($result != FALSE) 
 		{
 			foreach ($result as $row) {
@@ -487,7 +487,7 @@ class Main extends CI_Controller
 	public function cargarDatosAutores()
 	{
 		$id = $this->uri->segment(2);
-		$result = $this->tbl_autores->findIdAutores($id);
+		$result = $this->Tbl_autores->findIdAutores($id);
 		if ($result != FALSE) 
 		{
 			foreach ($result as $row) {
@@ -517,7 +517,7 @@ class Main extends CI_Controller
 	public function cargarDatosPalabras()
 	{
 		$id = $this->uri->segment(2);
-		$result = $this->tbl_palabras->findNombrePalabra($id);
+		$result = $this->Tbl_palabras->findNombrePalabra($id);
 		if ($result != FALSE) 
 		{
 			foreach ($result as $row) {
@@ -546,7 +546,7 @@ class Main extends CI_Controller
 		$query = $this->input->post('palabra', TRUE);
 
 		 if ($query) {     //valido que si enviaron palabra
-		 	$result = $this->tbl_documentos->busquedaGeneral($query);  //ejecuto el query con la palabra
+		 	$result = $this->Tbl_documentos->busquedaGeneral($query);  //ejecuto el query con la palabra
 		 	if($result != FALSE)
 		 	{
 				$data = array('result' =>$result, 'resultAvanzada' =>'');
@@ -627,7 +627,7 @@ class Main extends CI_Controller
 			$fechaPublicacion= str_replace("."," ",$fechaPublicacion);  // reemplazo los puntos por espacios
 		}
 
-		$resultAvanzada = $this->tbl_documentos->busquedaAvanzada($titulo, $autor, $palabraClav, $area, $fechaPublicacion, $idioma, $formato, $busqTitulo); 
+		$resultAvanzada = $this->Tbl_documentos->busquedaAvanzada($titulo, $autor, $palabraClav, $area, $fechaPublicacion, $idioma, $formato, $busqTitulo); 
 		
 		if($resultAvanzada != FALSE)
 		 	{
@@ -644,7 +644,7 @@ class Main extends CI_Controller
 
 	public function findAreas()
 	{
-		$query = $this->tbl_areas->findAreas();
+		$query = $this->Tbl_areas->findAreas();
 		$data = array(
 			'areas' => $query); 
 
@@ -655,7 +655,7 @@ class Main extends CI_Controller
 
 	public function findPalabrasClave()
 	{
-		$palabrasClave = $this->tbl_palabras->palabrasClave();
+		$palabrasClave = $this->Tbl_palabras->palabrasClave();
 
 		$data = array(
 			'palabras' => $palabrasClave); 
@@ -697,26 +697,26 @@ class Main extends CI_Controller
 	    }
 	    else {
 	        // validacion exitosa
-	       $this->tbl_documentos->guardarDocumento($dataDocumento);	//inserto documento
-		   $idDocumento = $this->tbl_documentos->UltimoidDocumento();  // ultimo id de documento
-		   $this->tbl_areas->guardarArea($area);					//inserto area
-		   $idArea = $this->tbl_areas->UltimoidArea();		// ultimo id de area			
-		   $this->tbl_documentoArea->guardarDocumentoArea($idDocumento, $idArea);//guardo id documento y area $personas[$dni];
-			$idAutor = $this->tbl_autores->findIdAutor($dataDocumento['derechos_autor']); //obtengo id de autor
+	       $this->Tbl_documentos->guardarDocumento($dataDocumento);	//inserto documento
+		   $idDocumento = $this->Tbl_documentos->UltimoidDocumento();  // ultimo id de documento
+		   $this->Tbl_areas->guardarArea($area);					//inserto area
+		   $idArea = $this->Tbl_areas->UltimoidArea();		// ultimo id de area			
+		   $this->Tbl_documentoArea->guardarDocumentoArea($idDocumento, $idArea);//guardo id documento y area $personas[$dni];
+			$idAutor = $this->Tbl_autores->findIdAutor($dataDocumento['derechos_autor']); //obtengo id de autor
 			//sacar datos de funcion result()
 			foreach ($idAutor as $row) {
 			$idautor = $row->id_autor;
 			}				
 			
-		  $this->tbl_documentoAutor->guardarDocumentoAutor($idDocumento, $idautor);//guardo id documento, aut
-		  $idpalabra = $this->tbl_palabras->findIdPalabra($palabraClav);
+		  $this->Tbl_documentoAutor->guardarDocumentoAutor($idDocumento, $idautor);//guardo id documento, aut
+		  $idpalabra = $this->Tbl_palabras->findIdPalabra($palabraClav);
 
 		  //sacar datos de funcion result()
 		  foreach ($idpalabra as $row) {
     		$idpalabra = $row->id_palabra;
 			}
 		 // echo $idDocumento;
-		  $this->tbl_documentoPalabra->guardarDocumentoPalabra($idDocumento, $idpalabra);
+		  $this->Tbl_documentoPalabra->guardarDocumentoPalabra($idDocumento, $idpalabra);
 
 	    }
 		 
@@ -738,7 +738,7 @@ class Main extends CI_Controller
 	    }
 	    else {
 		
-		$this->tbl_areas->guardarArea($area);
+		$this->Tbl_areas->guardarArea($area);
 		}
 		redirect('RegistrarArea');
 	}
@@ -763,7 +763,7 @@ class Main extends CI_Controller
 		 }
 		 else 
 		 {		
-			$this->tbl_autores->guardarAutor($nombre, $apellido, $correo, $acronimo);
+			$this->Tbl_autores->guardarAutor($nombre, $apellido, $correo, $acronimo);
 		}
 
 		redirect('RegistrarAutor');
@@ -786,7 +786,7 @@ class Main extends CI_Controller
 	    }
 	    else {
 		
-		$this->tbl_palabras->guardarPalabra($palabra);
+		$this->Tbl_palabras->guardarPalabra($palabra);
 		}
 		
 		redirect('RegistrarPalabra');
@@ -827,16 +827,16 @@ class Main extends CI_Controller
 	        
 	    }
 	    else {
-		    $this->tbl_documentos->udpdateDocumento($dataDocumento, $idDocumento);	//inserto documento
-		    $idArea = $this->tbl_areas->findIdAreas($area);	 //busco id por nombre
+		    $this->Tbl_documentos->udpdateDocumento($dataDocumento, $idDocumento);	//inserto documento
+		    $idArea = $this->Tbl_areas->findIdAreas($area);	 //busco id por nombre
 		    $idArea= $idArea[0]->id_area;		
-	  		$this->tbl_documentoArea->updateDocumenArea($idDocumento, $idArea); 
-			$idAutor = $this->tbl_autores->findIdAutor($dataDocumento['derechos_autor']); //obtengo array de id de autor
+	  		$this->Tbl_documentoArea->updateDocumenArea($idDocumento, $idArea); 
+			$idAutor = $this->Tbl_autores->findIdAutor($dataDocumento['derechos_autor']); //obtengo array de id de autor
     		$idautor = $idAutor[0]->id_autor;	//obtengo id de autor		
-		    $this->tbl_documentoAutor->updateDocumenAutor($idDocumento, $idautor);//actualizo id documento, autor
-		    $idpalabra = $this->tbl_palabras->findIdPalabra($palabraClav); //obtengo array de id de palabra
+		    $this->Tbl_documentoAutor->updateDocumenAutor($idDocumento, $idautor);//actualizo id documento, autor
+		    $idpalabra = $this->Tbl_palabras->findIdPalabra($palabraClav); //obtengo array de id de palabra
     	    $idpalabra = $idpalabra[0]->id_palabra; //obtengo id de palabra	
-		    $this->tbl_documentoPalabra->updateDocumenPalabra($idDocumento, $idpalabra);
+		    $this->Tbl_documentoPalabra->updateDocumenPalabra($idDocumento, $idpalabra);
 		}				 
 		redirect('VerEditarCatalogacion');		
 	}
@@ -859,7 +859,7 @@ class Main extends CI_Controller
 	    }
 	    else {
 		
-			$this->tbl_areas->udpdateArea($dataArea, $idArea);	//actualizo datos
+			$this->Tbl_areas->udpdateArea($dataArea, $idArea);	//actualizo datos
 		}
 				 
 		redirect('VerEditarArea');	
@@ -888,7 +888,7 @@ class Main extends CI_Controller
 		 }
 		 else 
 		 {	
-			$this->tbl_autores->udpdateAutor($dataAutor, $idAutor);	//actualizo datos
+			$this->Tbl_autores->udpdateAutor($dataAutor, $idAutor);	//actualizo datos
 		}
 				 
 		redirect('VerEditarAutores');	
@@ -913,7 +913,7 @@ class Main extends CI_Controller
 	    }
 	    else {
 
-			$this->tbl_palabras->udpdatePalabra($dataPalabra, $idPalabra);	//actualizo datos
+			$this->Tbl_palabras->udpdatePalabra($dataPalabra, $idPalabra);	//actualizo datos
 		 }				 
 		redirect('VerEditarPalabra');	
 	}
@@ -925,7 +925,7 @@ class Main extends CI_Controller
 
 		if ($id) 
 		{ 
-			$this->tbl_documentos->deleteDocumento($id);	//actualizo datos
+			$this->Tbl_documentos->deleteDocumento($id);	//actualizo datos
 		}
 		else
 		{
@@ -939,7 +939,7 @@ class Main extends CI_Controller
 
 		if ($id) 
 		{ 
-			$this->tbl_areas->deleteArea($id);	//actualizo datos
+			$this->Tbl_areas->deleteArea($id);	//actualizo datos
 		}
 		else
 		{
@@ -954,7 +954,7 @@ class Main extends CI_Controller
 
 		if ($id) 
 		{ 
-			$this->tbl_autores->deleteAutor($id);	//actualizo datos
+			$this->Tbl_autores->deleteAutor($id);	//actualizo datos
 		}
 		else
 		{
@@ -969,7 +969,7 @@ class Main extends CI_Controller
 
 		if ($id) 
 		{ 
-			$this->tbl_palabras->deletePalabra($id);	//actualizo datos
+			$this->Tbl_palabras->deletePalabra($id);	//actualizo datos
 		}
 		else
 		{
