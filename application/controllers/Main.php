@@ -735,7 +735,7 @@ class Main extends CI_Controller
 	    }
 	    else {
 		
-		$this->tbl_areas->guardarArea($area);
+		$this->Tbl_areas->guardarArea($area);
 		}
 		redirect('RegistrarArea');
 	}
