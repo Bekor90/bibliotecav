@@ -9,7 +9,7 @@ class Main extends CI_Controller
             $this->load->helper(array('url'));
             $this->load->library('form_validation');
             $this->load->model('Tbl_documentos');
-            $this->load->model('tbl_areas');
+            $this->load->model('Tbl_areas');
             $this->load->model('tbl_palabras');
             $this->load->model('tbl_autores');
             $this->load->model('tbl_documentoArea');  
