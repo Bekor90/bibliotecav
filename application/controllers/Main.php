@@ -6,7 +6,7 @@ class Main extends CI_Controller
 	 public function __construct()
         {
             parent::__construct();        
-            $this->load->helper(array('url'));
+            $this->load->helper(array('url', 'Cargarconsultas_helper'));
             $this->load->library('form_validation');
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
