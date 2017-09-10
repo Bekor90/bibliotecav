@@ -5,6 +5,12 @@ class tbl_documentos extends CI_model {
 
 	 /* @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+public function __construct()
+    {
+        parent::__construct();
+    }
+
 	function guardarDocumento($data)
 	{	
 		$this->db->insert('documentos', $data);	
