@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-	<?php=$this->load->view('headers/header');?>
+	<?php $this->load->view('headers/header');?>
   <div class="container">
     <div class="starter-template">
       <h1>Bienvenido</h1>
