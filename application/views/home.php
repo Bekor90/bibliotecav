@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 	<?php $this->load->view('headers/header');?>
+	<?php $this->load->view('footer/footer'); ?>
   <div class="container">
     <div class="starter-template">
       <h1>Bienvenido</h1>
@@ -250,4 +251,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 </div>  <!--tab-content -->
    </div> <!--starter-template-->
 </div><!-- /.container -->
-<?php $this->load->view('footer/footer'); ?>
+
