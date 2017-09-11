@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	    	 		<div class="form-group">						
 					<?php echo form_label("nombre del area", "nombreArea") ?>
 					    <div class="controls">
-					    <?php echo form_input($input_name) ?>
+					    <?php echo form_input($input->$input_name) ?>
 						</div>
 					</div>
 				</div>
