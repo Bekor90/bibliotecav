@@ -6,7 +6,7 @@ class Main extends CI_Controller
 	 public function __construct()
         {
             parent::__construct();        
-            $this->load->helper(array('url'));
+            //$this->load->helper(array('url'));
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
             $this->load->model('Tbl_palabras');
@@ -16,8 +16,7 @@ class Main extends CI_Controller
             $this->load->model('Tbl_documentoPalabra');
         }
 
-	 /* @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+
 	public function index()
 	{
 		$data = array('result' => '', 'resultAvanzada' =>'', 'tabpane' =>'');	
@@ -722,7 +721,7 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
-		 $this->load->library('form_validation');
+		 //$this->load->library('form_validation');
 		$area = $this->input->post('nombreArea', TRUE);
 		    	// reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'trim|required||strip_tags|min_length[2]|maxlength[50]');
