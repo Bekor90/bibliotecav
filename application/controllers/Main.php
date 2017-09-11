@@ -734,13 +734,11 @@ class Main extends CI_Controller
 	     if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion	
 	    }
-	    else {
-
-	    	echo $area;
-		
-		//$this->Tbl_areas->guardarArea($area);
+	    else 
+	    {		
+		 $this->Tbl_areas->guardarArea($area);
 		}
-		//redirect('RegistrarArea');
+		redirect('RegistrarArea');
 	}
 	public function saveAutor()
 	{
