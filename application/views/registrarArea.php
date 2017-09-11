@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<?php echo form_open(base_url()."GuardarArea") ?>
+<?php echo form_open('GuardarArea') ?>
 			</br></br>
 	    	 <div class="container">
 	           <div class="row">
