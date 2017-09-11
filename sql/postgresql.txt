@@ -1,0 +1,16 @@
+ //crear secuencia para campo autoincrementable
+
+create sequence sec_codigolibros
+  start with 1
+  increment by 1
+  maxvalue 99999
+  minvalue 1;
+
+
+ create table libros(
+  codigo nextval('sec_codigolibros'),
+  titulo varchar(30),
+  autor varchar(30),
+  editorial varchar(15),
+  primary key (codigo)
+ );

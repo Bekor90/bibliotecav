@@ -43,14 +43,22 @@ class Main extends CI_Controller
 	public function registroCatalogacion()
 	{
 		$data = array('views' => 'registrarCatalogacion'); 
-
 		$this->load->view('template', $data);
 	}
 
 	public function registroArea()
 	{
-		$data = array('views' => 'registrarArea'); 
-		$this->load->view('template', $data);
+		$data = array('views' => 'registrarArea');
+		$input = array();
+		$input["input_name"]= array(
+			'name' => 'nombreArea',
+			'class' => 'form-control');
+		$input["input_submit"]= array(
+			'name' => 'submit',
+			'value' => 'Guardar',
+			'class' => 'btn btn-success btn-lg');
+ 
+		$this->load->view('template', $data, $input);
 	}
 	public function registroAutor()
 	{
@@ -721,7 +729,7 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
-		 $this->load->library('form_validation');
+		$this->load->library('form_validation');
 		$area = $this->input->post('nombreArea', TRUE);
 		    	// reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'trim|required|strip_tags|min_length[2]|maxlength[50]');
@@ -771,7 +779,7 @@ class Main extends CI_Controller
 
 	public function savePalabra()
 	{
-		$this->load->library('form_validation');
+	$this->load->library('form_validation');
 		$palabra = $this->input->post('palabraClave', TRUE);
 
 		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|maxlength[50]');
