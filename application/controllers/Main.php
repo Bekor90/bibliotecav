@@ -730,13 +730,14 @@ class Main extends CI_Controller
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
 	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
 	  
-	     if ($this->form_validation->run() == FALSE) {
+	     if ($this->form_validation->run() == TRUE) {
 	        // no pasa validacion
-	        echo "error al validar ".$area;
+	      echo $area;
 	    }
 	    else 
-	    {		
-	    	echo $area;
+	    {	
+	      echo "error al validar ".$area;	
+	    	
 		// $this->Tbl_areas->guardarArea($area);
 		}
 		//redirect('RegistrarArea');
