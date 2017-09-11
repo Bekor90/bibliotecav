@@ -732,7 +732,7 @@ class Main extends CI_Controller
 	  
 	     if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion
-	        echo $area;	
+	        echo "error al validar".$area;
 	    }
 	    else 
 	    {		
