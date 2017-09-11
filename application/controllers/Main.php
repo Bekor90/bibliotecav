@@ -724,7 +724,7 @@ class Main extends CI_Controller
 	{
 		$area = $this->input->post('nombreArea', TRUE);
 		    	// reglas de validacion
-	    $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|alpha|min_length[2]|maxlength[50]');
+	    $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|min_length[2]|maxlength[50]');
 	    $this->form_validation->set_message('required', 'Debe completar este campo');
 	    $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
