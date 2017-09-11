@@ -731,7 +731,8 @@ class Main extends CI_Controller
 	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
 	  
 	     if ($this->form_validation->run() == FALSE) {
-	        // no pasa validacion	
+	        // no pasa validacion
+	        echo $area;	
 	    }
 	    else 
 	    {		
