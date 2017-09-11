@@ -771,7 +771,7 @@ class Main extends CI_Controller
 
 	public function savePalabra()
 	{
-
+		$this->load->library('form_validation');
 		$palabra = $this->input->post('palabraClave', TRUE);
 
 		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|maxlength[50]');
