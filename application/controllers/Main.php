@@ -722,6 +722,7 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
+		 $this->load->library('form_validation');
 		$area = $this->input->post('nombreArea', TRUE);
 		    	// reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|min_length[2]|maxlength[50]');
@@ -732,7 +733,7 @@ class Main extends CI_Controller
 	  
 	     if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion
-	        echo "error al validar".$area;
+	        echo "error al validar ".$area;
 	    }
 	    else 
 	    {		
