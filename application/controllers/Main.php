@@ -57,8 +57,10 @@ class Main extends CI_Controller
 			'name' => 'submit',
 			'value' => 'Guardar',
 			'class' => 'btn btn-success btn-lg');
+
+		print_r($input);
  
-		$this->load->view('template', $data, $input);
+		//$this->load->view('template', $data);
 	}
 	public function registroAutor()
 	{
