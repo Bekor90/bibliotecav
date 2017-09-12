@@ -6,7 +6,7 @@ class Main extends CI_Controller
 	 public function __construct()
         {
             parent::__construct();        
-            //$this->load->helper(array('url'));
+            $this->load->helper(array('url', 'Cargarconsultas'));
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
             $this->load->model('Tbl_palabras');
