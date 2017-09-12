@@ -31,7 +31,8 @@ class Main extends CI_Controller
 		{
 			//pendiente pasar nombre de usuario
 			$data = array('views' => ''); 
-			$this->load->view('template', $data);
+			$input = array();
+			$this->load->view('template', $data, $input);
 		}
 	else{
 			redirect('Ingresar');
@@ -58,9 +59,9 @@ class Main extends CI_Controller
 			'value' => 'Guardar',
 			'class' => 'btn btn-success btn-lg');
 
-		print_r($input);
+		//print_r($input);
  
-		//$this->load->view('template', $data);
+		$this->load->view('template', $data, $input);
 	}
 	public function registroAutor()
 	{
