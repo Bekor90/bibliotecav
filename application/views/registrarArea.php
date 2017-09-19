@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 				<div class="row">
 				<div class="col-xs-12 col-md-12">	
 					<center>
-					 <?php echo form_submit($input_submit) ?>
+					  <button type="submit" class="btn btn-success btn-lg" id="btnGarea"> Guardar</button>
 					</center>			
 				</div> <!-- Div col-xs-12 col-md-12-->
 				</div><!-- Div row-->
