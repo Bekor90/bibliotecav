@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	 <div class="tab-pane fade active in" role="tabpanel" id="consultaGeneral" aria-labelledby="consultaGeneral-tab">  <!--busqueda General -->
 		
-		</br></br><h4><p>Por favor ingresa una palabra para realizar la búsqueda de documentos relacionados</p></h4></br></br></br></br>
+		</br></br><h4><p>Por favor ingresa una palabra para realizar la búsqueda de documentos relacionados, ejemplo: java.</p></h4></br></br></br></br>
 
 		<form id="formBusquedaG" method="POST" action="<?=base_url();?>BuscarG">
 	    	<div class="container">
@@ -251,4 +251,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 </div>  <!--tab-content -->
    </div> <!--starter-template-->
 </div><!-- /.container -->
-
