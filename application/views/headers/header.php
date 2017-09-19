@@ -28,12 +28,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?=base_url(); ?>">Bilbioteca</a>
+          <a class="navbar-brand" href="<?=base_url(); ?>"><span class="glyphicon glyphicon-book"></span>&nbsp;Biblioteca</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="<?=base_url(); ?>">Home</a></li>
-            <li><a href="<?=base_url(); ?>Ingresar">Ingresar</a></li>
+            <li class="active"><a href="<?=base_url(); ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+            <li><a href="<?=base_url(); ?>Ingresar"><span class="glyphicon glyphicon-user"></span>&nbsp;Ingresar</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div> <!--container-->

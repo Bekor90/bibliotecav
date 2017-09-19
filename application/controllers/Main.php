@@ -6,7 +6,7 @@ class Main extends CI_Controller
 	 public function __construct()
         {
             parent::__construct();        
-            $this->load->helper(array('consultas'));
+            $this->load->helper(array('consultas', 'form'));
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
             $this->load->model('Tbl_palabras');
@@ -31,8 +31,9 @@ class Main extends CI_Controller
 		{
 			//pendiente pasar nombre de usuario
 			$data = array('views' => ''); 
-			$input = array();
-			$this->load->view('template', $data, $input);
+			$inputname = array('' => '');
+			$inputsubmit = array('' => '');
+			$this->load->view('template', $data);
 		}
 	else{
 			redirect('Ingresar');
@@ -49,30 +50,34 @@ class Main extends CI_Controller
 
 	public function registroArea()
 	{
-		$data = array('views' => 'registrarArea');
-		$input = array();
-		$input["input_name"]= array(
+		$inputname= array(
 			'name' => 'nombreArea',
 			'class' => 'form-control');
-		$input["input_submit"]= array(
+		$inputsubmit = array(
 			'name' => 'submit',
 			'value' => 'Guardar',
 			'class' => 'btn btn-success btn-lg');
 
-		//print_r($input);
+		$data = array('views' => 'registrarArea',
+					'input' => $inputname,
+					'submit' => $inputsubmit);
  
-		$this->load->view('template', $data, $input);
+		$this->load->view('template', $data);
 	}
 	public function registroAutor()
 	{
 		$data = array('views' => 'registrarAutor'); 
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function registroPalabra()
 	{
 		$data = array('views' => 'registrarPalabra'); 
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEditarCatalogacion()
@@ -115,7 +120,9 @@ class Main extends CI_Controller
 			'funcion' => 'FormEditarCatalogacion'
 			);
 
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEliminarCatalogacion()
@@ -157,7 +164,9 @@ class Main extends CI_Controller
 			'funcion' => 'EliminarCatalogacion'
 			);
 
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEditarAreas()
@@ -199,7 +208,9 @@ class Main extends CI_Controller
 			'funcion' => 'FormEditarArea'
 			);
 
-		$this->load->view('template', $data);
+	 $inputname = array();
+	 $inputsubmit = array();
+	$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEliminarAreas()
@@ -241,7 +252,9 @@ class Main extends CI_Controller
 			'funcion' => 'EliminarArea'
 			);
 
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEditarAutores()
@@ -283,7 +296,9 @@ class Main extends CI_Controller
 			'funcion' => 'FormEditarAutor'
 			);
 
-		$this->load->view('template', $data);
+	 $inputname = array();
+	 $inputsubmit = array();
+	$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEliminarAutores()
@@ -325,7 +340,9 @@ class Main extends CI_Controller
 			'funcion' => 'EliminarAutores'
 			);
 
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEditarPalabras()
@@ -369,7 +386,9 @@ class Main extends CI_Controller
 			'funcion' => 'FormEditarPalabra'	  //funcion a enviar los datos
 			);
 
-		$this->load->view('template', $data);	//cargar vista
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function tablaEliminarPalabras()
@@ -412,7 +431,9 @@ class Main extends CI_Controller
 			'nombreboton' => 'Eliminar',
 			'funcion' => 'EliminarPalabra'
 			);
-		$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 
@@ -465,7 +486,9 @@ class Main extends CI_Controller
 		{
 			return FALSE;
 		}
-			$this->load->view('template', $data);
+			 $inputname = array();
+			 $inputsubmit = array();
+			$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function cargarDatosAreas()
@@ -488,7 +511,9 @@ class Main extends CI_Controller
 		{
 			return FALSE;
 		}
-			$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function cargarDatosAutores()
@@ -518,7 +543,9 @@ class Main extends CI_Controller
 		{
 			return FALSE;
 		}
-			$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 	public function cargarDatosPalabras()
@@ -541,7 +568,9 @@ class Main extends CI_Controller
 		{
 			return FALSE;
 		}
-			$this->load->view('template', $data);
+		 $inputname = array();
+		 $inputsubmit = array();
+		$this->load->view('template', $data, $inputname, $inputsubmit);
 	}
 
 
@@ -732,25 +761,31 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
-		$this->load->library('form_validation');
-		$area = $this->input->post('nombreArea', TRUE);
+		/*$this->load->library('form_validation');
+		
 		    	// reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'trim|required|strip_tags|min_length[2]|maxlength[50]');
 	    $this->form_validation->set_message('required', 'Debe completar este campo');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
 	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
 	  
-	     if ($this->form_validation->run() == FALSE) {
-	        // no pasa validacion
-	       echo "error en form_validation ".$area;
-	       echo validation_errors ();	
+	     if ($this->form_validation->run() == TRUE) 
+	     {
+	     	$area = $this->input->post('nombreArea', TRUE);
+	     	echo $area;
+	     	 $this->Tbl_areas->guardarArea($area);
+	       
 	    }
 	    else 
 	    {	
-	    	 echo $area;
+	    	 // no pasa validacion
+	       echo "error en form_validation ";
+	       echo validation_errors (); 	
 	    	
-		// $this->Tbl_areas->guardarArea($area);
-		}
+		}*/
+		$area = $this->input->post('nombreArea', TRUE);	     
+	     $this->Tbl_areas->guardarArea($area);
+		
 		//redirect('RegistrarArea');
 	}
 	public function saveAutor()
