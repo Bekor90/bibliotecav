@@ -30,10 +30,12 @@ class Main extends CI_Controller
 		if ($this->ion_auth->logged_in())
 		{
 			//pendiente pasar nombre de usuario
-			$data = array('views' => ''); 
-			$inputname = array('' => '');
-			$inputsubmit = array('' => '');
-			$this->load->view('template', $data);
+		$this->load->view('headers/header');
+		$this->load->view('headers/menutemplate');
+		$this->load->view('secciontemplate');
+		$this->load->view('registrarArea');
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');	
 		}
 	else{
 			redirect('Ingresar');
