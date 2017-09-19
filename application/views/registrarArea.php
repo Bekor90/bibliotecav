@@ -7,11 +7,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	           <div class="row">
 	           <div class="col-xs-3 col-md-3"></div>
 	        	<div class="col-xs-6 col-md-6">
-	    	 		<div class="form-group">						
-					<?php echo form_label("nombre del area", "nombreArea") ?>
-					    <div class="controls">
-					    <?php echo form_input($input_name) ?>
-						</div>
+	    	 		<div class="form-group">
+	    	 		<label for="titulo">Nombre Palabra Clave</label>
+	    	 		<div class="controls">						
+				 		<input class="form-control" type="text" placeholder="escribe aqui el nombre de el area" name="nombreArea" id="nombreArea">
+					</div>
 					</div>
 				</div>
 				<div class="col-xs-3 col-md-3"></div>
