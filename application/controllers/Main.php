@@ -67,9 +67,10 @@ class Main extends CI_Controller
 		$this->load->view('headers/menutemplate');
 		$this->load->view('contentemplate');		
 		$this->load->view('footer/footertemplate');	
+		//$this->load->view('headers/headertemplate', $data);
 	}
 
-		$this->load->view('headers/headertemplate', $data);
+		
 	}
 	public function registroAutor()
 	{
