@@ -70,8 +70,6 @@ class Main extends CI_Controller
 		//$this->load->view('headers/headertemplate', $data);
 	}
 
-		
-	}
 	public function registroAutor()
 	{
 		$data = array('views' => 'registrarAutor'); 
