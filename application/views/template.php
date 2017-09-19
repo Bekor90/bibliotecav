@@ -246,7 +246,7 @@ desired effect
        <h1>Bienvenido</h1>
       </center>
      <?php else:?>
-     <?php $this->load->view($views, $input);?>
+     <?php $this->load->view($views);?>
      <?php endif; ?>
     </section>
     <!-- /.content -->
