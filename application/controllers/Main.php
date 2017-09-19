@@ -63,9 +63,13 @@ class Main extends CI_Controller
 					'input' => $inputname,
 					'submit' => $inputsubmit);
 
+
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate');
 		$this->load->view('secciontemplate');
 		$this->load->view('registrarArea');
 		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');	
 		//$this->load->view('headers/headertemplate', $data);
 	}
 
