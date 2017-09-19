@@ -61,8 +61,15 @@ class Main extends CI_Controller
 		$data = array('views' => 'registrarArea',
 					'input' => $inputname,
 					'submit' => $inputsubmit);
- 
-		$this->load->view('template', $data);
+
+
+		$this->load->view('headers/header');
+		$this->load->view('headers/menutemplate');
+		$this->load->view('contentemplate');		
+		$this->load->view('footer/footertemplate');	
+	}
+
+		$this->load->view('headers/headertemplate', $data);
 	}
 	public function registroAutor()
 	{
