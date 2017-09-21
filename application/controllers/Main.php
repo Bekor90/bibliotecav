@@ -724,7 +724,7 @@ class Main extends CI_Controller
 	    
 	    if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion
-	        
+	         echo validation_errors (); 
 	    }
 	    else {
 
@@ -765,10 +765,11 @@ class Main extends CI_Controller
 			}
 		 // echo $idDocumento;
 		  $this->Tbl_documentoPalabra->guardarDocumentoPalabra($idDocumento, $idpalabra);
+		  redirect('RegistrarCatalogacion');
 
 	    }
 		 
-		redirect('RegistrarCatalogacion');
+		
 	}
 
 	public function saveArea()
@@ -783,8 +784,7 @@ class Main extends CI_Controller
 	     if ($this->form_validation->run() == FALSE) 
 	     {
 	     	 // no pasa validacion
-	       echo validation_errors (); 	  
-	       
+	       echo validation_errors (); 	  	       
 	    }
 	    else 
 	    {	
