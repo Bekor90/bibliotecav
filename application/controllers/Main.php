@@ -784,11 +784,10 @@ class Main extends CI_Controller
 	    else 
 	    {	
 	    	$area = $this->input->post('nombreArea', TRUE);	     
-		     $this->Tbl_areas->guardarArea($area);    	
+		     $this->Tbl_areas->guardarArea($area);   
+		     redirect('RegistrarArea'); 	
 		}
 		
-		
-		//redirect('RegistrarArea');
 	}
 	public function saveAutor()
 	{
