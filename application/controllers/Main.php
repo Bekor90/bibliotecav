@@ -769,7 +769,6 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
-		 $this->load->helper(array('form', 'url'));
          $this->load->library('form_validation');
 		  // reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'Nombrearea', 'required|strip_tags|min_length[2]|maxlength[50]');
