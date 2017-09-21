@@ -771,10 +771,10 @@ class Main extends CI_Controller
 	{
          $this->load->library('form_validation');
 		  // reglas de validacion
-	    $this->form_validation->set_rules('nombreArea', 'Nombrearea', 'required|strip_tags|min_length[2]|maxlength[50]');
+	    $this->form_validation->set_rules('nombreArea', 'Nombrearea', 'required|strip_tags|min_length[2]|max_length[50]');
 	    $this->form_validation->set_message('required', 'Debe completar este campo');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
-	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	    $this->form_validation->set_message('max_length[50]','El campo debe tener menos de 50 caracteres');
 	  
 	     if ($this->form_validation->run() == FALSE) 
 	     {
