@@ -32,7 +32,7 @@ class Main extends CI_Controller
 			//pendiente pasar nombre de usuario
 			$titulo = array('titulo' => 'Bienvenido');
 			$this->load->view('headers/headertemplate');
-			$this->load->view('headers/menutemplate');
+			$this->load->view('headers/menutemplate', $titulo);
 			$this->load->view('secciontemplate');
 			$this->load->view('cierretemplate');			
 			$this->load->view('footer/footertemplate');	
