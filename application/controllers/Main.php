@@ -7,6 +7,7 @@ class Main extends CI_Controller
         {
             parent::__construct();        
             $this->load->helper(array('consultas', 'form'));
+            $this->load->library('form_validation');
             $this->load->model('Tbl_documentos');
             $this->load->model('Tbl_areas');
             $this->load->model('Tbl_palabras');
@@ -769,8 +770,7 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
-		$this->load->library('form_validation');
-		
+				
 		    	// reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'trim|required|strip_tags|min_length[2]|maxlength[50]');
 	    $this->form_validation->set_message('required', 'Debe completar este campo');

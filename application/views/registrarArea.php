@@ -9,7 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	        	<div class="col-xs-6 col-md-6">
 	    	 		<div class="form-group">
 	    	 			<?php echo form_label('Nombre palabra clave') ?>
-	    	 		<label for="titulo">Nombre Palabra Clave</label>
 		    	 		<div class="controls">	
 		    	 		<?php echo form_input($input) ?>					
 						</div>
