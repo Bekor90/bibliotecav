@@ -712,11 +712,11 @@ class Main extends CI_Controller
 		$this->load->library('form_validation');
 				
     	// reglas de validacion
-	    $this->form_validation->set_rules('tipoMaterial', 'tipomaterial', 'trim|required|strip_tags|alpha|min_length[2]|max_length[30]');
-	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|strip_tags|min_length[2]|max_length[200]');
-	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|strip_tags|min_length[2]|max_length[100]');
-	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|strip_tags|min_length[2]|max_length[50]');
-	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags|min_length[2]|max_length[200]');
+	    $this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|strip_tags|alpha|min_length[3]|max_length[30]');
+	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|strip_tags|min_length[3]|max_length[200]');
+	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|strip_tags|min_length[3]|max_length[100]');
+	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|strip_tags|min_length[3]|max_length[50]');
+	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags|min_length[3]|max_length[200]');
 	    $this->form_validation->set_message('required','El campo es obligatorio'); 
         $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
         $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
