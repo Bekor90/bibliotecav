@@ -58,16 +58,15 @@ class Main extends CI_Controller
 			'name' => 'submit',
 			'value' => 'Guardar',
 			'class' => 'btn btn-success btn-lg');
-
-		$data = array('views' => 'registrarArea',
-					'input' => $inputname,
-					'submit' => $inputsubmit);
+		$titulo = array('titulo' => 'registrar Area');
+		$data = array('input' => $inputname,
+					  'submit' => $inputsubmit);
 
 
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate');
 		$this->load->view('secciontemplate');
-		$this->load->view('registrarArea');
+		$this->load->view('registrarArea', $data, FALSE);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');	
 		//$this->load->view('headers/headertemplate', $data);

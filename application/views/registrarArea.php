@@ -8,8 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	           <div class="col-xs-3 col-md-3"></div>
 	        	<div class="col-xs-6 col-md-6">
 	    	 		<div class="form-group">
+	    	 			<?php echo form_label('Nombre palabra clave') ?>
 	    	 		<label for="titulo">Nombre Palabra Clave</label>
-	    	 		<div class="controls">						
+	    	 		<div class="controls">	
+	    	 		<?php echo form_input($input) ?>					
 				 		<input class="form-control" type="text" placeholder="escribe aqui el nombre de el area" name="nombreArea" id="nombreArea">
 					</div>
 					</div>
@@ -22,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 				<div class="row">
 				<div class="col-xs-12 col-md-12">	
 					<center>
-					  <button type="submit" class="btn btn-success btn-lg" id="btnGarea"> Guardar</button>
+						<?php echo form_submit($submit) ?>
 					</center>			
 				</div> <!-- Div col-xs-12 col-md-12-->
 				</div><!-- Div row-->
