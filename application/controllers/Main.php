@@ -799,7 +799,7 @@ class Main extends CI_Controller
 		$this->load->library('form_validation');
 		 $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|strip_tags|alpha|min_length[3]|max_length[50]');
 		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|strip_tags|alpha|min_length[3]|max_length[50]');
-		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|strip_tags|alpha|min_length[3]|valid_email');
+		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|strip_tags|min_length[3]|valid_email');
 		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|strip_tags|alpha|min_length[3]|max_length[30]');
 
 		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
