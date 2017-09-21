@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<form id="formRegistrarPalabra" method="post" action="<?=base_url();?>GuardarPalabra">
+<?php echo form_open('GuardarPalabra') ?>
 			</br></br>
 	    	 <div class="container">
 	           <div class="row">
@@ -27,4 +27,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 				</div> <!-- Div col-xs-12 col-md-12-->
 				</div><!-- Div row-->
 			</div> <!-- Div container -->
-</form> 
+<?php echo form_close()?> 

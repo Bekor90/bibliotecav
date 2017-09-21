@@ -68,19 +68,25 @@ class Main extends CI_Controller
 	}
 
 	public function registroAutor()
-	{
-		$data = array('views' => 'registrarAutor'); 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+	{	 
+		$titulo = array('titulo' => 'Registrar Autor');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('registrarArea');
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function registroPalabra()
 	{
-		$data = array('views' => 'registrarPalabra'); 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Registrar Palabra');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('registrarArea');
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEditarCatalogacion()
@@ -777,8 +783,7 @@ class Main extends CI_Controller
 	     if ($this->form_validation->run() == FALSE) 
 	     {
 	     	 // no pasa validacion
-	       echo validation_errors (); 
-		  
+	       echo validation_errors (); 	  
 	       
 	    }
 	    else 
@@ -791,52 +796,51 @@ class Main extends CI_Controller
 	}
 	public function saveAutor()
 	{
-
-		$nombre = $this->input->post('nombre', TRUE);
-		$apellido = $this->input->post('apellido', TRUE);
-		$correo = $this->input->post('correo', TRUE);
-		$acronimo = $this->input->post('acronimo', TRUE);
-		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|maxlength[50]');
-		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		$this->load->library('form_validation');
+		 $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|alpha|min_length[2]|max_length[50]');
+		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|max_length[50]');
 		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
-		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|maxlength[30]');
+		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|max_length[30]');
 
 		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
 		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 		 $this->form_validation->set_message('required', 'Debe completar este campo');
 
 		 if ($this->form_validation->run() == FALSE) {
-		 	
+		 	 echo validation_errors (); 	 		 	
 		 }
 		 else 
-		 {		
+		 {	
+		 	$nombre = $this->input->post('nombre', TRUE);
+			$apellido = $this->input->post('apellido', TRUE);
+			$correo = $this->input->post('correo', TRUE);
+			$acronimo = $this->input->post('acronimo', TRUE);	
 			$this->Tbl_autores->guardarAutor($nombre, $apellido, $correo, $acronimo);
+			redirect('RegistrarAutor');
 		}
 
-		redirect('RegistrarAutor');
+		
 	}
 
 	public function savePalabra()
 	{
-	$this->load->library('form_validation');
-		$palabra = $this->input->post('palabraClave', TRUE);
-
-		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		$this->load->library('form_validation');		
+		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[3]|max_length[50]');
 		$this->form_validation->set_message('required', 'Debe completar este campo');
 		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
-	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	    $this->form_validation->set_message('max_length[50]','El campo debe tener menos de 50 caracteres');
 	  
 	     if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion
-	    
+	    	echo validation_errors (); 
 	    }
 	    else {
+			$palabra = $this->input->post('palabraClave', TRUE);
+			$this->Tbl_palabras->guardarPalabra($palabra);
+			redirect('RegistrarPalabra');
+		}		
 		
-		$this->Tbl_palabras->guardarPalabra($palabra);
-		}
-		
-		redirect('RegistrarPalabra');
 	}
 
 	public function updateCatalogacion()

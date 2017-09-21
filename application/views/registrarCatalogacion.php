@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<form id="formRegistrarCatalogacion" method="post" action="<?=base_url();?>GuardarCatalogacion">
+<?php echo form_open('GuardarCatalogacion') ?>
 	    	 <div class="container">
 	           <div class="row">
 	        	<div class="col-xs-3 col-md-3">
@@ -221,4 +221,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 		</div> <!-- Div col-xs-12 col-md-12-->
 		</div><!-- Div row-->
 		</div> <!-- Div container 4-->
-</form>   
+<?php echo form_close()?> 
