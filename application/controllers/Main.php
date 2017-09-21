@@ -46,8 +46,14 @@ class Main extends CI_Controller
 
 	public function registroCatalogacion()
 	{
-		$data = array('views' => 'registrarCatalogacion'); 
-		$this->load->view('template', $data);
+
+		$titulo = array('titulo' => 'Registrar Catalogacion');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('registrarCatalogacion');
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function registroArea()
@@ -697,7 +703,26 @@ class Main extends CI_Controller
 
 	public function guardarCatalogacion()
 	{
-			$dataDocumento = array(
+		$this->load->library('form_validation');
+				
+    	// reglas de validacion
+	    $this->form_validation->set_rules('tipoMaterial', 'tipomaterial', 'trim|required|alpha|min_length[2]|max_length[30]');
+	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|max_length[200]');
+	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|max_length[100]');
+	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|max_length[50]');
+	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|max_length[200]');
+	    $this->form_validation->set_message('required','El campo es obligatorio'); 
+        $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+        $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
+             
+	    
+	    if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion
+	        
+	    }
+	    else {
+
+	    	$dataDocumento = array(
 			'tipo_material' => $this->input->post('tipoMaterial', TRUE),
 			'titulo_principal' => $this->input->post('tituloPrincipal', TRUE),
 			'titulo_secundario' => $this->input->post('tituloSecundario', TRUE),
@@ -712,23 +737,7 @@ class Main extends CI_Controller
 
 			$area = $this->input->post('area', TRUE);
 			$palabraClav = $this->input->post('palabras', TRUE);
-		
-    	// reglas de validacion
-	    $this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|maxlength[30]');
-	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|maxlength[200]');
-	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|maxlength[100]');
-	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|maxlength[50]');
-	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|maxlength[200]');
-	    $this->form_validation->set_message('required','El campo es obligatorio'); 
-        $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
-        $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
-             
-	    
-	    if ($this->form_validation->run() == FALSE) {
-	        // no pasa validacion
-	        
-	    }
-	    else {
+
 	        // validacion exitosa
 	       $this->Tbl_documentos->guardarDocumento($dataDocumento);	//inserto documento
 		   $idDocumento = $this->Tbl_documentos->UltimoidDocumento();  // ultimo id de documento
@@ -774,7 +783,7 @@ class Main extends CI_Controller
 	    }
 	    else 
 	    {	
-	    	$area = $this->input->post('nombreArea', FALSE);	     
+	    	$area = $this->input->post('nombreArea', TRUE);	     
 		     $this->Tbl_areas->guardarArea($area);    	
 		}
 		
