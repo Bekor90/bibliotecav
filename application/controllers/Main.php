@@ -827,7 +827,7 @@ class Main extends CI_Controller
 		$this->load->library('form_validation');		
 		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[3]|max_length[50]');
 		$this->form_validation->set_message('required', 'Debe completar este campo');
-		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+		$this->form_validation->set_message('alpha','El campo debe tener solo letras');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
 	    $this->form_validation->set_message('max_length[50]','El campo debe tener menos de 50 caracteres');
 	  

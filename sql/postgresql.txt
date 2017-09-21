@@ -14,3 +14,5 @@ create sequence sec_codigolibros
   editorial varchar(15),
   primary key (codigo)
  );
+
+ALTER TABLE public.palabraclave ALTER COLUMN id_palabra SET DEFAULT nextval('palabra_seq'::regclass);
