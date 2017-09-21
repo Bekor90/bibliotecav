@@ -66,7 +66,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate');
 		$this->load->view('secciontemplate');
-		$this->load->view('registrarArea', $data, FALSE);
+		$this->load->view('registrarArea');
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');	
 		//$this->load->view('headers/headertemplate', $data);
@@ -770,7 +770,7 @@ class Main extends CI_Controller
 	public function saveArea()
 	{
 		  // reglas de validacion
-	    $this->form_validation->set_rules('nombreArea', 'trim|required|strip_tags|min_length[2]|maxlength[50]');
+	    $this->form_validation->set_rules('nombreArea', 'required|strip_tags|min_length[2]|maxlength[50]');
 	    $this->form_validation->set_message('required', 'Debe completar este campo');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
 	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
