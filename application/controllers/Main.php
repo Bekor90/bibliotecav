@@ -712,11 +712,11 @@ class Main extends CI_Controller
 		$this->load->library('form_validation');
 				
     	// reglas de validacion
-	    $this->form_validation->set_rules('tipoMaterial', 'tipomaterial', 'trim|required|alpha|min_length[2]|max_length[30]');
-	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|max_length[200]');
-	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|max_length[100]');
-	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|max_length[50]');
-	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|max_length[200]');
+	    $this->form_validation->set_rules('tipoMaterial', 'tipomaterial', 'trim|required|strip_tags|alpha|min_length[2]|max_length[30]');
+	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|strip_tags|min_length[2]|max_length[200]');
+	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|strip_tags|min_length[2]|max_length[100]');
+	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|strip_tags|min_length[2]|max_length[50]');
+	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags|min_length[2]|max_length[200]');
 	    $this->form_validation->set_message('required','El campo es obligatorio'); 
         $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
         $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
@@ -797,13 +797,13 @@ class Main extends CI_Controller
 	public function saveAutor()
 	{
 		$this->load->library('form_validation');
-		 $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|alpha|min_length[2]|max_length[50]');
-		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|max_length[50]');
-		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
-		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|max_length[30]');
+		 $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|strip_tags|alpha|min_length[3]|max_length[50]');
+		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|strip_tags|alpha|min_length[3]|max_length[50]');
+		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|strip_tags|alpha|min_length[3]|valid_email');
+		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|strip_tags|alpha|min_length[3]|max_length[30]');
 
 		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
-		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+		 $this->form_validation->set_message('alpha','El campo debe tener solo por letras');
 		 $this->form_validation->set_message('required', 'Debe completar este campo');
 
 		 if ($this->form_validation->run() == FALSE) {
