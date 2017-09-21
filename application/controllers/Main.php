@@ -51,25 +51,13 @@ class Main extends CI_Controller
 
 	public function registroArea()
 	{
-		$inputname= array(
-			'name' => 'nombreArea',
-			'class' => 'form-control');
-		$inputsubmit = array(
-			'name' => 'submit',
-			'value' => 'Guardar',
-			'class' => 'btn btn-success btn-lg');
-		$titulo = array('titulo' => 'Registrar Area');
-		$data = array('input' => $inputname,
-					  'submit' => $inputsubmit);
-
-
+		$titulo = 'Registrar Area';
 		$this->load->view('headers/headertemplate');
-		$this->load->view('headers/menutemplate');
+		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
 		$this->load->view('registrarArea');
 		$this->load->view('cierretemplate');			
-		$this->load->view('footer/footertemplate');	
-		//$this->load->view('headers/headertemplate', $data);
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function registroAutor()
@@ -779,7 +767,6 @@ class Main extends CI_Controller
 	     if ($this->form_validation->run() == FALSE) 
 	     {
 	     	 // no pasa validacion
-		   echo "error en form_validation ";
 	       echo validation_errors (); 
 		  
 	       
@@ -787,12 +774,7 @@ class Main extends CI_Controller
 	    else 
 	    {	
 	    	$area = $this->input->post('nombreArea', FALSE);	     
-		     $this->Tbl_areas->guardarArea($area);
-		     echo $area;
-		      //$this->Tbl_areas->guardarArea($area);
-	    	
-	      	
-	    	
+		     $this->Tbl_areas->guardarArea($area);    	
 		}
 		
 		
