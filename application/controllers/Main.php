@@ -769,7 +769,7 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
-		/*$this->load->library('form_validation');
+		$this->load->library('form_validation');
 		
 		    	// reglas de validacion
 	    $this->form_validation->set_rules('nombreArea', 'trim|required|strip_tags|min_length[2]|maxlength[50]');
@@ -779,9 +779,10 @@ class Main extends CI_Controller
 	  
 	     if ($this->form_validation->run() == TRUE) 
 	     {
-	     	$area = $this->input->post('nombreArea', TRUE);
-	     	echo $area;
-	     	 $this->Tbl_areas->guardarArea($area);
+		     $area = $this->input->post('nombreArea', FALSE);	     
+		     $this->Tbl_areas->guardarArea($area);
+		     echo $area;
+		     //$this->Tbl_areas->guardarArea($area);
 	       
 	    }
 	    else 
@@ -790,9 +791,8 @@ class Main extends CI_Controller
 	       echo "error en form_validation ";
 	       echo validation_errors (); 	
 	    	
-		}*/
-		$area = $this->input->post('nombreArea', TRUE);	     
-	     $this->Tbl_areas->guardarArea($area);
+		}
+		
 		
 		//redirect('RegistrarArea');
 	}

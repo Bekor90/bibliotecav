@@ -10,10 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	    	 		<div class="form-group">
 	    	 			<?php echo form_label('Nombre palabra clave') ?>
 	    	 		<label for="titulo">Nombre Palabra Clave</label>
-	    	 		<div class="controls">	
-	    	 		<?php echo form_input($input) ?>					
-				 		<input class="form-control" type="text" placeholder="escribe aqui el nombre de el area" name="nombreArea" id="nombreArea">
-					</div>
+		    	 		<div class="controls">	
+		    	 		<?php echo form_input($input) ?>					
+						</div>
 					</div>
 				</div>
 				<div class="col-xs-3 col-md-3"></div>
