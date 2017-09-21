@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	    	 		<div class="form-group">
 	    	 		<label for="titulo">Nombre Area</label>
 	    	 		<div class="controls">						
-				 		<input class="form-control" type="text" placeholder="escribe aqui el nombre de el area" name="nombreArea" value="<?php echo set_value('nombreArea'); ?>" id="nombreArea">
+				 		<input class="form-control" type="text" placeholder="escribe aqui el nombre de el area" name="nombreArea" value="" id="nombreArea">
 					</div>
 					</div>
 				</div>

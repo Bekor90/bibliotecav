@@ -769,25 +769,30 @@ class Main extends CI_Controller
 
 	public function saveArea()
 	{
+		 $this->load->helper(array('form', 'url'));
+         $this->load->library('form_validation');
 		  // reglas de validacion
-	    $this->form_validation->set_rules('nombreArea', 'required|strip_tags|min_length[2]|maxlength[50]');
+	    $this->form_validation->set_rules('nombreArea', 'Nombrearea', 'required|strip_tags|min_length[2]|maxlength[50]');
 	    $this->form_validation->set_message('required', 'Debe completar este campo');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
 	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
 	  
-	     if ($this->form_validation->run() == TRUE) 
+	     if ($this->form_validation->run() == FALSE) 
 	     {
-		     $area = $this->input->post('nombreArea', FALSE);	     
-		     $this->Tbl_areas->guardarArea($area);
-		     echo $area;
-		     //$this->Tbl_areas->guardarArea($area);
+	     	 // no pasa validacion
+		   echo "error en form_validation ";
+	       echo validation_errors (); 
+		  
 	       
 	    }
 	    else 
 	    {	
-	    	 // no pasa validacion
-	       echo "error en form_validation ";
-	       echo validation_errors (); 	
+	    	$area = $this->input->post('nombreArea', FALSE);	     
+		     $this->Tbl_areas->guardarArea($area);
+		     echo $area;
+		      //$this->Tbl_areas->guardarArea($area);
+	    	
+	      	
 	    	
 		}
 		
