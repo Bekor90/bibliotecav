@@ -713,7 +713,7 @@ class Main extends CI_Controller
 				
     	// reglas de validacion
 	    $this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|strip_tags|alpha|min_length[3]|max_length[30]');
-	    $this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|strip_tags|min_length[3]|max_length[200]');
+	    $this->form_validation->set_rules('tituloPrincipal', 'tituloPrincipal', 'trim|required|strip_tags|min_length[3]|max_length[200]');
 	     $this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|strip_tags|min_length[3]|max_length[100]');
 	    $this->form_validation->set_rules('editorial', 'editorial', 'trim|required|strip_tags|min_length[3]|max_length[50]');
 	    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags|min_length[3]|max_length[200]');
