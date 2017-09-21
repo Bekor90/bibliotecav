@@ -73,7 +73,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('registrarArea');
+		$this->load->view('registrarAutor');
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
@@ -84,7 +84,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('registrarArea');
+		$this->load->view('registrarPalabra');
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
