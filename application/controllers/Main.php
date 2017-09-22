@@ -129,7 +129,7 @@ class Main extends CI_Controller
 			'funcion' => 'FormEditarCatalogacion'
 			);
 
-		$titulo = array('titulo' => 'Editar Catalogacion');
+		$titulo = array('titulo' => 'Editar Catalogación');
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
