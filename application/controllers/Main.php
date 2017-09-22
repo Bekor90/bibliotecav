@@ -732,8 +732,7 @@ class Main extends CI_Controller
 
 	public function guardarCatalogacion()
 	{
-		$this->load->library('form_validation');
-				
+		$this->load->library('form_validation');				
     	// reglas de validacion
 	    $this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|strip_tags|alpha|min_length[3]|max_length[30]');
 	    $this->form_validation->set_rules('tituloPrincipal', 'tituloPrincipal', 'trim|required|strip_tags|min_length[3]|max_length[200]');
@@ -868,14 +867,15 @@ class Main extends CI_Controller
 
 	public function updateCatalogacion()
 	{
-			$this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|max_length[30]');
-	    	$this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|max_length[200]');
-	     	$this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|max_length[100]');
-	    	$this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|max_length[50]');
-	    	$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|max_length[200]');
-	    	$this->form_validation->set_message('required','El campo es obligatorio'); 
-        	$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
-        	$this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
+		$this->load->library('form_validation');	
+		$this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|max_length[30]');
+    	$this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|max_length[200]');
+     	$this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|max_length[100]');
+    	$this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|max_length[50]');
+    	$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|max_length[200]');
+    	$this->form_validation->set_message('required','El campo es obligatorio'); 
+    	$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+    	$this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
              
 	
 		 if ($this->form_validation->run() == FALSE) {
@@ -917,6 +917,7 @@ class Main extends CI_Controller
 
 	public function updateArea()
 	{
+		$this->load->library('form_validation');
 		 $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|alpha|min_length[2]|max_length[50]');
 	     $this->form_validation->set_message('required', 'Debe completar este campo');
 	     $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
@@ -942,6 +943,7 @@ class Main extends CI_Controller
 
 	public function updateAutor()
 	{
+		$this->load->library('form_validation');	
 		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|max_length[50]');
 		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|max_length[50]');
 		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
@@ -970,6 +972,7 @@ class Main extends CI_Controller
 
 	public function updatePalabra()
 	{
+		$this->load->library('form_validation');
 		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|max_length[50]');
 		$this->form_validation->set_message('required', 'Debe completar este campo');
 		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
