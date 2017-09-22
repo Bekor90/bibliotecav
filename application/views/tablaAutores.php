@@ -18,7 +18,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 					<td><?php echo $row->apellido ?></td>
 					<td><?php echo $row->acronimo ?></td>
 					<td><?php echo $row->correo ?></td>
-					<td><button type="submit" class="<?=$propiedad?>" id="btnEditar"><a href="<?=base_url();?><?=$funcion?>/<?=$row->id_autor?>"><span class="badge"><?=$nombreboton?></span></a></button></td>
+					<td><a href="<?=base_url(); ?><?=$funcion?>/<?=$row->id_autor?>">
+						<span class="<?=$propiedad?>"></span>
+						</a>
+					</td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>

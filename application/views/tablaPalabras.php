@@ -12,7 +12,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 				<?php foreach($result as $row): ?>
 				<tr>
 					<td><?php echo $row->nombre ?></td>
-					<td><button type="submit" class="<?=$propiedad?>" id="btnEditar"><a href="<?=base_url();?><?=$funcion?>/<?=$row->id_palabra?>"><span class="glyphicon glyphicon-pencil"><?=$nombreboton?></span></a></button></td>
+					<td><a href="<?=base_url(); ?><?=$funcion?>/<?=$row->id_palabra?>">
+						<span class="<?=$propiedad?>"></span>
+						</a>
+					</td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>

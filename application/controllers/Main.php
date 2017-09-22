@@ -123,6 +123,7 @@ class Main extends CI_Controller
 
 		$data = array( 
 			'result' =>$result,
+			'propiedad' => 'glyphicon glyphicon-pencil',
 			'funcion' => 'FormEditarCatalogacion'
 			);
 
@@ -166,17 +167,20 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config);
+
 		$data = array( 
 			'result' =>$result,
-			'views' => 'tablaCatalogacion',
-			'propiedad' => 'btn btn-danger btn-lg',
-			'nombreboton' => 'Eliminar',
+			'propiedad' => 'glyphicon glyphicon-remove',
 			'funcion' => 'EliminarCatalogacion'
 			);
 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Eliminar Catalogación');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEditarAreas()
@@ -210,17 +214,20 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config);
+
 		$data = array( 
 			'result' =>$result,
-			'views' => 'tablaAreas',
-			'propiedad' => 'btn btn-info btn-lg',
-			'nombreboton' => 'Editar',
+			'propiedad' => 'glyphicon glyphicon-pencil',
 			'funcion' => 'FormEditarArea'
 			);
 
-	 $inputname = array();
-	 $inputsubmit = array();
-	$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Editar Catalogación');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEliminarAreas()
@@ -254,17 +261,20 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config);
-		$data = array( 
+
+		 $data = array( 
 			'result' =>$result,
-			'views' => 'tablaAreas',
-			'propiedad' => 'btn btn-danger btn-lg',
-			'nombreboton' => 'Eliminar',
+			'propiedad' => 'glyphicon glyphicon-remove',
 			'funcion' => 'EliminarArea'
 			);
 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Eliminar Area');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEditarAutores()
@@ -298,17 +308,20 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config);
+
 		$data = array( 
 			'result' =>$result,
-			'views' => 'tablaAutores',			
-			'propiedad' => 'btn btn-info btn-lg',
-			'nombreboton' => 'Editar',
+			'propiedad' => 'glyphicon glyphicon-pencil',
 			'funcion' => 'FormEditarAutor'
 			);
 
-	 $inputname = array();
-	 $inputsubmit = array();
-	$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Editar Autor');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEliminarAutores()
@@ -342,17 +355,20 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config);
+
 		$data = array( 
 			'result' =>$result,
-			'views' => 'tablaAutores',
-			'propiedad' => 'btn btn-danger btn-lg',
-			'nombreboton' => 'Eliminar',
+			'propiedad' => 'glyphicon glyphicon-remove',
 			'funcion' => 'EliminarAutores'
 			);
 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Eliminar Autor');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEditarPalabras()
@@ -388,17 +404,20 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config); //inicializar paginación
-		$data = array( 
-			'result' =>$result,   		          //registros del modelo de palabrasclave
-			'views' => 'tablaPalabras',	           //nombre de la vista 
-			'propiedad' => 'btn btn-info btn-lg', //atributos del boton
-			'nombreboton' => 'Editar',			  //nombre del boton
-			'funcion' => 'FormEditarPalabra'	  //funcion a enviar los datos
+
+		 $data = array( 
+			'result' =>$result,
+			'propiedad' => 'glyphicon glyphicon-pencil',
+			'funcion' => 'FormEditarPalabra'
 			);
 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Editar Palabra');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEliminarPalabras()
@@ -434,16 +453,19 @@ class Main extends CI_Controller
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';		
 		$this->pagination->initialize($config); //inicializar paginación
-		$data = array( 
+		 $data = array( 
 			'result' =>$result,
-			'views' => 'tablaPalabras',
-			'propiedad' => 'btn btn-danger btn-lg',
-			'nombreboton' => 'Eliminar',
+			'propiedad' => 'glyphicon glyphicon-remove',
 			'funcion' => 'EliminarPalabra'
 			);
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+
+		$titulo = array('titulo' => 'Eliminar Palabra');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 
