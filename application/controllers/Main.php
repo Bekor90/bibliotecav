@@ -225,7 +225,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('tablaAreas', $data);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
@@ -272,7 +272,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('tablaAreas', $data);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
@@ -319,7 +319,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('tablaAutores', $data);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
@@ -366,7 +366,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('tablaAutores', $data);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
@@ -415,7 +415,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('tablaPalabras', $data);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
@@ -463,7 +463,7 @@ class Main extends CI_Controller
 		$this->load->view('headers/headertemplate');
 		$this->load->view('headers/menutemplate', $titulo);
 		$this->load->view('secciontemplate');
-		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('tablaPalabras', $data);
 		$this->load->view('cierretemplate');			
 		$this->load->view('footer/footertemplate');
 	}
