@@ -839,9 +839,7 @@ class Main extends CI_Controller
 			$acronimo = $this->input->post('acronimo', TRUE);	
 			$this->Tbl_autores->guardarAutor($nombre, $apellido, $correo, $acronimo);
 			redirect('RegistrarAutor');
-		}
-
-		
+		}		
 	}
 
 	public function savePalabra()
@@ -861,8 +859,7 @@ class Main extends CI_Controller
 			$palabra = $this->input->post('palabraClave', TRUE);
 			$this->Tbl_palabras->guardarPalabra($palabra);
 			redirect('RegistrarPalabra');
-		}		
-		
+		}			
 	}
 
 	public function updateCatalogacion()
@@ -936,23 +933,23 @@ class Main extends CI_Controller
 			$idArea = $this->input->post('id', TRUE);		
 			$this->Tbl_areas->udpdateArea($dataArea, $idArea);	//actualizo datos
 			redirect('VerEditarArea');	
-		}
-				 
+		}			 
 		
 	}
 
 	public function updateAutor()
 	{
 		$this->load->library('form_validation');	
-		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|max_length[50]');
-		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|max_length[50]');
-		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
-		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|max_length[30]');
+		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[3]|max_length[50]');
+		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[3]|max_length[50]');
+		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[3]|valid_email');
+		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[3]|max_length[30]');
 		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
 		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 		 $this->form_validation->set_message('required', 'Debe completar este campo');
 
-		 if ($this->form_validation->run() == FALSE) {
+		 if ($this->form_validation->run() == FALSE) 
+		 {
 		 	echo validation_errors(); 
 		 }
 		 else 
@@ -973,16 +970,16 @@ class Main extends CI_Controller
 	public function updatePalabra()
 	{
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|min_length[3]|max_length[50]');
 		$this->form_validation->set_message('required', 'Debe completar este campo');
 		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
 	    $this->form_validation->set_message('max_length[50]','El campo debe tener menos de 50 caracteres');
 	  
-	     if ($this->form_validation->run() == FALSE) {
+	     if ($this->form_validation->run() == FALSE) 
+	     {
 	        // no pasa validacion
-	        echo validation_errors(); 	 
-	    
+	        echo validation_errors(); 	 	    
 	    }
 	    else 
 	    {
@@ -990,7 +987,6 @@ class Main extends CI_Controller
 				'nombre' => $this->input->post('palabraClave', TRUE)
 			);
 			$idPalabra = $this->input->post('id', TRUE);
-
 			$this->Tbl_palabras->udpdatePalabra($dataPalabra, $idPalabra);	//actualizo datos
 			redirect('VerEditarPalabra');	
 		 }		
