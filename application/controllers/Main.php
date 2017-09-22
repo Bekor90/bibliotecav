@@ -129,9 +129,13 @@ class Main extends CI_Controller
 			'funcion' => 'FormEditarCatalogacion'
 			);
 
-		 $inputname = array();
-		 $inputsubmit = array();
-		$this->load->view('template', $data, $inputname, $inputsubmit);
+		$titulo = array('titulo' => 'Editar Catalogacion');
+		$this->load->view('headers/headertemplate');
+		$this->load->view('headers/menutemplate', $titulo);
+		$this->load->view('secciontemplate');
+		$this->load->view('tablaCatalogacion', $data);
+		$this->load->view('cierretemplate');			
+		$this->load->view('footer/footertemplate');
 	}
 
 	public function tablaEliminarCatalogacion()
@@ -784,7 +788,7 @@ class Main extends CI_Controller
 	     if ($this->form_validation->run() == FALSE) 
 	     {
 	     	 // no pasa validacion
-	       echo validation_errors (); 	  	       
+	       echo validation_errors(); 	  	       
 	    }
 	    else 
 	    {	
@@ -807,7 +811,7 @@ class Main extends CI_Controller
 		 $this->form_validation->set_message('required', 'Debe completar este campo');
 
 		 if ($this->form_validation->run() == FALSE) {
-		 	 echo validation_errors (); 	 		 	
+		 	 echo validation_errors(); 	 		 	
 		 }
 		 else 
 		 {	
@@ -833,7 +837,7 @@ class Main extends CI_Controller
 	  
 	     if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion
-	    	echo validation_errors (); 
+	    	echo validation_errors(); 
 	    }
 	    else {
 			$palabra = $this->input->post('palabraClave', TRUE);
@@ -845,8 +849,23 @@ class Main extends CI_Controller
 
 	public function updateCatalogacion()
 	{
-		$dataDocumento = array(
-			
+			$this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|max_length[30]');
+	    	$this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|max_length[200]');
+	     	$this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|max_length[100]');
+	    	$this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|max_length[50]');
+	    	$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|max_length[200]');
+	    	$this->form_validation->set_message('required','El campo es obligatorio'); 
+        	$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
+        	$this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
+             
+	
+		 if ($this->form_validation->run() == FALSE) {
+	        // no pasa validacion
+	        echo validation_errors(); 
+	        
+	    }
+	    else {
+	    	$dataDocumento = array(			
 			'tipo_material' => $this->input->post('tipoMaterial', TRUE),
 			'titulo_principal' => $this->input->post('tituloPrincipal', TRUE),
 			'titulo_secundario' => $this->input->post('tituloSecundario', TRUE),
@@ -857,27 +876,11 @@ class Main extends CI_Controller
 			'derechos_autor' => $this->input->post('autores', TRUE),			
 			'formato' => $this->input->post('formato', TRUE),
 			'descripcion' => $this->input->post('descripcion', TRUE)
-		);
+			);
 
 			$idDocumento = $this->input->post('id', TRUE);
 			$area = $this->input->post('area', TRUE);
 			$palabraClav = $this->input->post('palabras', TRUE);
-
-			$this->form_validation->set_rules('tipoMaterial', 'tipoMaterial', 'trim|required|alpha|min_length[2]|maxlength[30]');
-	    	$this->form_validation->set_rules('titulo_principal', 'titulo_principal', 'trim|required|min_length[2]|maxlength[200]');
-	     	$this->form_validation->set_rules('tituloSecundario', 'tituloSecundario', 'trim|required|min_length[2]|maxlength[100]');
-	    	$this->form_validation->set_rules('editorial', 'editorial', 'trim|required|min_length[2]|maxlength[50]');
-	    	$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|min_length[2]|maxlength[200]');
-	    	$this->form_validation->set_message('required','El campo es obligatorio'); 
-        	$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
-        	$this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres'); 
-             
-	
-		 if ($this->form_validation->run() == FALSE) {
-	        // no pasa validacion
-	        
-	    }
-	    else {
 		    $this->Tbl_documentos->udpdateDocumento($dataDocumento, $idDocumento);	//inserto documento
 		    $idArea = $this->Tbl_areas->findIdAreas($area);	 //busco id por nombre
 		    $idArea= $idArea[0]->id_area;		
@@ -888,85 +891,87 @@ class Main extends CI_Controller
 		    $idpalabra = $this->Tbl_palabras->findIdPalabra($palabraClav); //obtengo array de id de palabra
     	    $idpalabra = $idpalabra[0]->id_palabra; //obtengo id de palabra	
 		    $this->Tbl_documentoPalabra->updateDocumenPalabra($idDocumento, $idpalabra);
+		    redirect('VerEditarCatalogacion');
 		}				 
-		redirect('VerEditarCatalogacion');		
+		
 	}
 
 	public function updateArea()
 	{
-		$dataArea = array(
-			'nombre' => $this->input->post('nombreArea', TRUE)
-			);
-		$idArea = $this->input->post('id', TRUE);
-
-		 $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		 $this->form_validation->set_rules('nombreArea', 'nombreArea', 'trim|required|alpha|min_length[2]|max_length[50]');
 	     $this->form_validation->set_message('required', 'Debe completar este campo');
 	     $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 	     $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
-	      $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	     $this->form_validation->set_message('max_length[50]','El campo debe tener menos de 50 caracteres');
 	  
 	    if ($this->form_validation->run() == FALSE) {
-	        // no pasa validacion	
+	        // no pasa validacion
+	        echo validation_errors(); 
 	    }
-	    else {
-		
+	    else 
+	    {
+	    	$dataArea = array(
+				'nombre' => $this->input->post('nombreArea', TRUE)
+			);
+			$idArea = $this->input->post('id', TRUE);		
 			$this->Tbl_areas->udpdateArea($dataArea, $idArea);	//actualizo datos
+			redirect('VerEditarArea');	
 		}
 				 
-		redirect('VerEditarArea');	
+		
 	}
 
 	public function updateAutor()
 	{
-		$dataAutor = array(
-			'nombre' => $this->input->post('nombre', TRUE),
-			'apellido' => $this->input->post('apellido', TRUE),
-			'correo' => $this->input->post('correo', TRUE),
-			'acronimo' => $this->input->post('acronimo', TRUE)
-			);
-		$idAutor = $this->input->post('id', TRUE);
-
-		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|maxlength[50]');
-		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[2]|max_length[50]');
+		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[2]|max_length[50]');
 		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[2]|valid_email');
-		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|maxlength[30]');
+		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[2]|max_length[30]');
 		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
 		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 		 $this->form_validation->set_message('required', 'Debe completar este campo');
 
 		 if ($this->form_validation->run() == FALSE) {
-		 	
+		 	echo validation_errors(); 
 		 }
 		 else 
 		 {	
+		 	$dataAutor = array(
+			'nombre' => $this->input->post('nombre', TRUE),
+			'apellido' => $this->input->post('apellido', TRUE),
+			'correo' => $this->input->post('correo', TRUE),
+			'acronimo' => $this->input->post('acronimo', TRUE)
+			);
+			$idAutor = $this->input->post('id', TRUE);
 			$this->Tbl_autores->udpdateAutor($dataAutor, $idAutor);	//actualizo datos
-		}
-				 
-		redirect('VerEditarAutores');	
+			redirect('VerEditarAutores');
+		}				 
+			
 	}
 
 	public function updatePalabra()
 	{
-		$dataPalabra = array(
-			'nombre' => $this->input->post('palabraClave', TRUE)
-			);
-		$idPalabra = $this->input->post('id', TRUE);
-
-		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|maxlength[50]');
+		$this->form_validation->set_rules('palabraClave', 'palabraClave', 'trim|required|alpha|min_length[2]|max_length[50]');
 		$this->form_validation->set_message('required', 'Debe completar este campo');
 		$this->form_validation->set_message('alpha','El campo deben tener solo por letras');
 	    $this->form_validation->set_message('min_length[3]','El campo debe tener mas de 3 caracteres');
-	    $this->form_validation->set_message('maxlength[50]','El campo debe tener menos de 50 caracteres');
+	    $this->form_validation->set_message('max_length[50]','El campo debe tener menos de 50 caracteres');
 	  
 	     if ($this->form_validation->run() == FALSE) {
 	        // no pasa validacion
+	        echo validation_errors(); 	 
 	    
 	    }
-	    else {
+	    else 
+	    {
+	    	$dataPalabra = array(
+				'nombre' => $this->input->post('palabraClave', TRUE)
+			);
+			$idPalabra = $this->input->post('id', TRUE);
 
 			$this->Tbl_palabras->udpdatePalabra($dataPalabra, $idPalabra);	//actualizo datos
-		 }				 
-		redirect('VerEditarPalabra');	
+			redirect('VerEditarPalabra');	
+		 }		
 	}
 
 
