@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 					<td><?php echo $row->idioma ?></td>
 					<td><?php echo $row->derechos_autor ?></td>
 					<td><?php echo $row->formato ?></td>
-					<td><a href="<?=base_url(); ?><?=$funcion?>/<?=$row->id_documento?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Editar</a></td>  
+					<td><a href="<?=base_url(); ?><?=$funcion?>/<?=$row->id_documento?>"><span class="glyphicon glyphicon-pencil"></span></a></td>  
 				</tr>
 				<?php endforeach;?>				
 			</tbody>

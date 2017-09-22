@@ -123,9 +123,6 @@ class Main extends CI_Controller
 
 		$data = array( 
 			'result' =>$result,
-			'views' => 'tablaCatalogacion',
-			'propiedad' => 'btn btn-info btn-lg',
-			'nombreboton' => 'Editar',
 			'funcion' => 'FormEditarCatalogacion'
 			);
 
