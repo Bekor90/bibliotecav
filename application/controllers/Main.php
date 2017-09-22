@@ -941,7 +941,7 @@ class Main extends CI_Controller
 		$this->load->library('form_validation');	
 		 $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha|min_length[3]|max_length[50]');
 		 $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha|min_length[3]|max_length[50]');
-		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|alpha|min_length[3]|valid_email');
+		 $this->form_validation->set_rules('correo', 'correo', 'trim|required|min_length[3]|valid_email');
 		 $this->form_validation->set_rules('acronimo', 'acronimo', 'trim|required|alpha|min_length[3]|max_length[30]');
 		 $this->form_validation->set_message('valid_email','El campo debe ser un email correcto');
 		 $this->form_validation->set_message('alpha','El campo deben tener solo por letras');
